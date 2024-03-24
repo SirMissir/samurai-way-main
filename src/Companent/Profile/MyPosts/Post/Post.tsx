@@ -1,6 +1,10 @@
 import React from 'react';
 import s from './Post.module.css';
+// import {MyPostType} from "../MyPosts";
 
+// type PostPropsType ={
+//     Post: MyPostType
+// }
 
 function Post(props:any) {
 
@@ -11,7 +15,9 @@ function Post(props:any) {
                     alt="Logo"/>
                 {props.message}
                 <div>
+                    <span>{props.countLike}</span>
                     <span>like</span>
+
                 </div>
             </div>
     )
