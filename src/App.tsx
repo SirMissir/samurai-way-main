@@ -7,7 +7,10 @@ import Dialogs from "./Companent/Dialogs/Dialogs";
 import Music from "./Companent/Music/Music";
 import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
+import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
+
+
 
 
 
@@ -24,7 +27,7 @@ const PATH ={
     PAGE3: '/News',
     PAGE4: '/Music',
     PAGE5: '/Setting',
-    ERORR: '/error404',
+    ERORR: '/Error404',
 } as const
 
 
@@ -43,8 +46,8 @@ function App() {
                     < Route path={PATH.PAGE4} element={<Music/>} />
                     < Route path={PATH.PAGE5} element={<Setting/>} />
 
-                    {/*< Route path={'/*'} element={<Error404/>} />*/}
-                    {/*< Route path={'/adidas/*'} element={<Error404/>} />*/}
+                    < Route path={'/*'} element={<Error404/>} />
+                    < Route path={'/Profile/*'} element={<Error404/>} />
                 </Routes>
             </div>
 

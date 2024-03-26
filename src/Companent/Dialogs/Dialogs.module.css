@@ -1,0 +1,20 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr ;
+}
+.dialogs_members{
+    padding: 10px;
+}
+.dialogs_members a.active{
+    color: gold;
+}
+.member{
+    padding: 10px;
+}
+
+.messages{
+    padding: 10px;
+}
+.message{
+    padding: 10px;
+}
