@@ -7,25 +7,33 @@ import {PathsType} from "../../App";
 
 
 
-
-
 function Navbar(props:PathsType) {
     return (
         <nav className={s.nav}>
-            <div className={`${s.color} ${s.active}`}>
-                <a ><NavLink to={props.paths.PAGE1} >Profile</NavLink></a>
+            <div className={s.item}>
+                <NavLink to={props.paths.PAGE1} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                } >Profile</NavLink>
             </div>
-            <div className={s.color}>
-                <a ><NavLink to={props.paths.PAGE2} >Message</NavLink></a>
+            <div className={s.item}>
+                <NavLink to={props.paths.PAGE2} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                } >Message</NavLink>
             </div>
-            <div className={s.color}>
-                <a><NavLink to={props.paths.PAGE2} >News</NavLink></a>
+            <div className={s.item}>
+                <NavLink to={props.paths.PAGE3} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                } >News</NavLink>
             </div>
-            <div className={s.color}>
-                <a><NavLink to={props.paths.PAGE2} >Music</NavLink></a>
+            <div className={s.item}>
+                <NavLink to={props.paths.PAGE4} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                }>Music</NavLink>
             </div>
-            <div className={s.color}>
-                <a><NavLink to={props.paths.PAGE2} >Setting</NavLink></a>
+            <div className={s.item}>
+                <NavLink to={props.paths.PAGE5} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                } >Setting</NavLink>
             </div>
         </nav>
     )

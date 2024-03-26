@@ -4,8 +4,10 @@ import Header from "./Companent/Header/Header";
 import Navbar from "./Companent/Navbar/Navbar";
 import Profile from "./Companent/Profile/Profile";
 import Dialogs from "./Companent/Dialogs/Dialogs";
+import Music from "./Companent/Music/Music";
+import News from "./Companent/News/News";
+import Setting from "./Companent/Setting/Setting";
 import {Navigate, Route, Routes} from "react-router-dom";
-
 
 
 
@@ -16,13 +18,12 @@ export type PathsType ={
     };
 }
 
-
-
 const PATH ={
     PAGE1: '/Profile',
     PAGE2: '/Dialogs',
     PAGE3: '/News',
     PAGE4: '/Music',
+    PAGE5: '/Setting',
     ERORR: '/error404',
 } as const
 
@@ -38,9 +39,9 @@ function App() {
 
                     < Route path={PATH.PAGE1} element={<Profile/>} />
                     < Route path={PATH.PAGE2} element={<Dialogs/>} />
-                    {/*< Route path={PATH.PAGE3} element={<News/>} />*/}
-                    {/*< Route path={PATH.PAGE4} element={<Music/>} />*/}
-                    {/*< Route path={PATH.PAGE4} element={<Setting/>} />*/}
+                    < Route path={PATH.PAGE3} element={<News/>} />
+                    < Route path={PATH.PAGE4} element={<Music/>} />
+                    < Route path={PATH.PAGE5} element={<Setting/>} />
 
                     {/*< Route path={'/*'} element={<Error404/>} />*/}
                     {/*< Route path={'/adidas/*'} element={<Error404/>} />*/}
