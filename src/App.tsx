@@ -46,8 +46,8 @@ function App() {
                     < Route path={PATH.PAGE4} element={<Music/>} />
                     < Route path={PATH.PAGE5} element={<Setting/>} />
 
-                    < Route path={'/*'} element={<Error404/>} />
-                    < Route path={'/Profile/*'} element={<Error404/>} />
+                    {/*< Route path={'/*'} element={<Error404/>} />*/}
+                    {/*< Route path={'/Profile/*'} element={<Error404/>} />*/}
                 </Routes>
             </div>
 
