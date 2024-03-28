@@ -8,8 +8,15 @@ import Post from "./Post/Post";
 // }
 
 function MyPosts() {
-    return (
 
+    let postData =[
+        {id:1, message:'Hi,how are you',countLike:20},
+        {id:2, message:"It is my first post", countLike:30},
+
+    ]
+
+
+    return (
         <div className={s.myPosts}>
             My Posts
             <div className={s.item}>
@@ -18,14 +25,13 @@ function MyPosts() {
             </div>
             <div className={s.posts}>
                 <Post
-                    message={'Hi,how are you'}
-                    countLike={20}
+                    message={postData[0].message}
+                    countLike={postData[0].countLike}
                 />
                 <Post
-                    message={"It is my first post"}
-                    countLike={30}
+                    message={postData[1].message}
+                    countLike={postData[1].countLike}
                 />
-                <Post/>
             </div>
         </div>
     )
