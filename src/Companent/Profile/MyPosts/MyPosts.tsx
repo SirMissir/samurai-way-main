@@ -9,12 +9,15 @@ import Post from "./Post/Post";
 
 function MyPosts() {
 
-    let postData =[
+    let postsData =[
         {id:1, message:'Hi,how are you',countLike:20},
         {id:2, message:"It is my first post", countLike:30},
 
     ]
-
+        let postsElement = postsData.map(posts=><Post
+            message={posts.message}
+            countLike={posts.countLike}
+        />)
 
     return (
         <div className={s.myPosts}>
@@ -24,14 +27,7 @@ function MyPosts() {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                <Post
-                    message={postData[0].message}
-                    countLike={postData[0].countLike}
-                />
-                <Post
-                    message={postData[1].message}
-                    countLike={postData[1].countLike}
-                />
+                {postsElement}
             </div>
         </div>
     )
