@@ -7,14 +7,14 @@ import Post from "./Post/Post";
 //     countLike:number
 // }
 
-function MyPosts() {
+function MyPosts(props) {
 
-    let postsData =[
-        {id:1, message:'Hi,how are you',countLike:20},
-        {id:2, message:"It is my first post", countLike:30},
-
-    ]
-        let postsElement = postsData.map(posts=><Post
+    // let postsData =[
+    //     {id:1, message:'Hi,how are you',countLike:20},
+    //     {id:2, message:"It is my first post", countLike:30},
+    //
+    // ]
+        let postsElement = props.postsData.map(posts=><Post
             message={posts.message}
             countLike={posts.countLike}
         />)

@@ -32,6 +32,12 @@ const PATH ={
 
 
 function App() {
+     let postsData =[
+         {id:1, message:'Hi,how are you',countLike:20},
+         {id:2, message:"It is my first post", countLike:30},
+
+     ]
+
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -40,7 +46,7 @@ function App() {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile/>} />
+                    < Route path={PATH.PAGE1} element={<Profile postsData={postsData}/>} />
                     < Route path={PATH.PAGE2} element={<Dialogs/>} />
                     < Route path={PATH.PAGE3} element={<News/>} />
                     < Route path={PATH.PAGE4} element={<Music/>} />
