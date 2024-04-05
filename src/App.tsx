@@ -32,12 +32,6 @@ const PATH ={
 
 
 function App(props) {
-     /*let postsData =[
-         {id:1, message:'Hi,how are you',countLike:20},
-         {id:2, message:"It is my first post", countLike:30},
-
-     ]*/
-
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -46,8 +40,11 @@ function App(props) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile postsData={props.postsData}/>} />
-                    < Route path={PATH.PAGE2} element={<Dialogs messagesData={props.messagesData} dialogsData={props.dialogsData}/>} />
+                    < Route path={PATH.PAGE1} element={<Profile postsData={props.state.profilePage.postsData}/>} />
+
+                    < Route path={PATH.PAGE2} element={<Dialogs messagesData={props.state.dialogsPage.messagesData}
+                                                                dialogsData={props.state.dialogsPage.dialogsData}/>}/>
+
                     < Route path={PATH.PAGE3} element={<News/>} />
                     < Route path={PATH.PAGE4} element={<Music/>} />
                     < Route path={PATH.PAGE5} element={<Setting/>} />
