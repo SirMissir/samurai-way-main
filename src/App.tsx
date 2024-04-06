@@ -40,10 +40,9 @@ function App(props) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile postsData={props.state.profilePage.postsData}/>} />
+                    < Route path={PATH.PAGE1} element={<Profile state={props.state.profilePage}/>} />
 
-                    < Route path={PATH.PAGE2} element={<Dialogs messagesData={props.state.dialogsPage.messagesData}
-                                                                dialogsData={props.state.dialogsPage.dialogsData}/>}/>
+                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage} />} />
 
                     < Route path={PATH.PAGE3} element={<News/>} />
                     < Route path={PATH.PAGE4} element={<Music/>} />
