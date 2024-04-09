@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
@@ -9,22 +9,26 @@ import Post from "./Post/Post";
 
 function MyPosts(props) {
 
-    // let postsData =[
-    //     {id:1, message:'Hi,how are you',countLike:20},
-    //     {id:2, message:"It is my first post", countLike:30},
-    //
-    // ]
         let postsElement = props.postsData.map(posts=><Post
             message={posts.message}
             countLike={posts.countLike}
         />)
 
+    const [text,setText]=useState('')
+
+    let addPost = () => {
+            alert(text)
+    }
     return (
         <div className={s.myPosts}>
             My Posts
             <div className={s.item}>
-                <textarea/>
-                <button>Add post</button>
+                <textarea
+                    onClick={addPost}
+                    value={text}
+                    onChange={(event) => setText(event.target.value)}
+                />
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsElement}
