@@ -29,9 +29,40 @@ const PATH ={
     PAGE5: '/Setting',
     ERORR: '/Error404',
 } as const
+interface Post {
+    id: number;
+    message: string;
+    countLike: number;
+}
 
+interface Dialog {
+    id: number;
+    name: string;
+}
 
-function App(props) {
+interface DialogMessage {
+    id: number;
+    name: string;
+}
+
+interface ProfilePage {
+    postsData: Post[];
+}
+
+interface DialogsPage {
+    dialogsData: Dialog[];
+    messagesData: DialogMessage[];
+}
+
+interface State {
+    profilePage: ProfilePage;
+    dialogsPage: DialogsPage;
+}
+type PropsType = {
+    state: State
+}
+
+function App(props:PropsType) {
     return (
         <div className='app-wrapper'>
             <Header/>
