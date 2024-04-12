@@ -10,16 +10,45 @@ import Setting from "./Companent/Setting/Setting";
 import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
 
+type PropsType = {
+    state: State
+}
 
+export type State = {
+    profilePage: ProfilePage;
+    dialogsPage: DialogsPage;
+};
 
+export type ProfilePage = {
+    postsData: PostType[];
+};
 
+export type PostType = {
+    id: number;
+    message: string;
+    countLike: number;
+};
 
+export type DialogsPage = {
+    dialogsData: Dialog[];
+    messagesData: DialogMessage[];
+};
 
-export type PathsType ={
+export type Dialog = {
+    id: number;
+    name: string;
+};
+
+export type DialogMessage = {
+    id: number;
+    name: string;
+};
+
+export type PathsType = {
     paths: {
         [key: string]: string;
     };
-}
+};
 
 const PATH ={
     PAGE1: '/Profile',
@@ -29,38 +58,6 @@ const PATH ={
     PAGE5: '/Setting',
     ERORR: '/Error404',
 } as const
-interface Post {
-    id: number;
-    message: string;
-    countLike: number;
-}
-
-interface Dialog {
-    id: number;
-    name: string;
-}
-
-interface DialogMessage {
-    id: number;
-    name: string;
-}
-
-interface ProfilePage {
-    postsData: Post[];
-}
-
-interface DialogsPage {
-    dialogsData: Dialog[];
-    messagesData: DialogMessage[];
-}
-
-interface State {
-    profilePage: ProfilePage;
-    dialogsPage: DialogsPage;
-}
-type PropsType = {
-    state: State
-}
 
 function App(props:PropsType) {
     return (

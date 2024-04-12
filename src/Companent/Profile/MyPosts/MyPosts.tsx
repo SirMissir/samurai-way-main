@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
+import { PostType} from "../../../App";
 
-// export type MyPostType={
-//     message:string
-//     countLike:number
-// }
+type ProfilePropsType = {
+    postsData:PostType
+}
 
-function MyPosts(props) {
+function MyPosts(props:ProfilePropsType ) {
 
         let postsElement = props.postsData.map(posts=><Post
             message={posts.message}

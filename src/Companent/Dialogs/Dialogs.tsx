@@ -2,12 +2,17 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
+import {DialogsPage} from "../../App";
+
+type AppProps = {
+    state:DialogsPage
+}
 
 
-const Dialogs = (props) => {
+const Dialogs = (props:AppProps) => {
 
     let dialogsElements = props.state.dialogsData.map( dialogs=> <DialogItem name={dialogs.name} id={dialogs.id}/>)
-    // let messagesElements = props.state.messagesData.map(messages => <Message message = {messages.name} id={messages.id}/>)
+    let messagesElements = props.state.messagesData.map(messages => <Message message = {messages.name} id={messages.id}/>)
 
   return(
       <div className={s.dialogs}>
@@ -15,8 +20,7 @@ const Dialogs = (props) => {
               {dialogsElements}
           </div>
           <div className={s.messages}>
-              <Message/>
-              {/*{messagesElements}*/}
+              {messagesElements}
           </div>
       </div>
   )
