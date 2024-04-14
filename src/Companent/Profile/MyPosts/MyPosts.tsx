@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import { PostType} from "../../../App";
+import {PostType} from "../../../redux/state";
 
-type ProfilePropsType = {
-    postsData:PostType
+type PropsType={
+    posts:Array<PostType>
 }
 
-function MyPosts(props:ProfilePropsType ) {
+function MyPosts(props:PropsType ) {
 
-        let postsElement = props.postsData.map(posts=><Post
+        let postsElement = props.posts.map(posts=>
+            <Post
             message={posts.message}
             countLike={posts.countLike}
         />)

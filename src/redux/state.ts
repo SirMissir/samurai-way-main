@@ -1,36 +1,29 @@
-type MessageType={
+export type MessageType={
     id: number
     name:string
 }
-type DialogType={
+export type DialogType={
     id: number
     name:string
 }
-type PostType={
+export type PostType={
     id:number
     message:string
     countLike:number
 }
-type ProfilePageType={
+export type ProfilePageType={
     posts: Array<PostType>
 }
-type DialogsPageType={
+export type DialogsPageType={
     dialogs:Array<DialogType>
-    messagesData:Array<MessageType>
+    messages:Array<MessageType>
 }
-type SidebarType={}
-
-type RootStateType={
+export type SidebarType={}
+export type RootStateType={
     profilePage:ProfilePageType
     dialogsPage:DialogsPageType
     sidebar:SidebarType
 }
-
-export type PathsType = {
-    paths: {
-        [key: string]: string;
-    };
-};
 
 
 let state:RootStateType = {
@@ -49,24 +42,17 @@ let state:RootStateType = {
             {id:4, name:"Lera"},
             {id:5, name:"Victor"}
         ],
-        messagesData:[
+        messages:[
             {id:1, name:"Hi"},
             {id:2, name:"How is your it-kamasutra"},
             {id:3, name:"OK"},
             {id:4, name:"How much your learning"},
             {id:5, name:"Victor"}
         ]
-    }
+    },
+    sidebar:{}
 
 }
 
-const PATH ={
-    PAGE1: '/Profile',
-    PAGE2: '/Dialogs',
-    PAGE3: '/News',
-    PAGE4: '/Music',
-    PAGE5: '/Setting',
-    ERORR: '/Error404',
-} as const
 
-export  default {state,PATH};
+export  default state;

@@ -9,40 +9,7 @@ import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-
-type PropsType = {
-    state: State
-}
-
-export type State = {
-    profilePage: ProfilePage;
-    dialogsPage: DialogsPage;
-};
-
-export type ProfilePage = {
-    postsData: PostType[];
-};
-
-export type PostType = {
-    id: number;
-    message: string;
-    countLike: number;
-};
-
-export type DialogsPage = {
-    dialogsData: Dialog[];
-    messagesData: DialogMessage[];
-};
-
-export type Dialog = {
-    id: number;
-    name: string;
-};
-
-export type DialogMessage = {
-    id: number;
-    name: string;
-};
+import {RootStateType} from "./redux/state";
 
 export type PathsType = {
     paths: {
@@ -59,6 +26,9 @@ const PATH ={
     ERORR: '/Error404',
 } as const
 
+type PropsType={
+    state:RootStateType
+}
 function App(props:PropsType) {
     return (
         <div className='app-wrapper'>

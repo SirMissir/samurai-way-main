@@ -5,8 +5,6 @@ import App from './App';
 import {HashRouter} from "react-router-dom";
 import state from "./redux/state";
 
-
-
 ReactDOM.render(
     <HashRouter>
         <App state={state}/>
