@@ -11,8 +11,10 @@ export type PostType={
     message:string
     countLike:number
 }
+
 export type ProfilePageType={
     posts: Array<PostType>
+    newPostText:string
 }
 export type DialogsPageType={
     dialogs:Array<DialogType>
@@ -33,6 +35,7 @@ let state:RootStateType = {
             {id:2, message:"It is my first post", countLike:30},
 
         ],
+        newPostText: 'it-kamasutra'
     },
     dialogsPage:{
         dialogs:[
@@ -54,5 +57,14 @@ let state:RootStateType = {
 
 }
 
+export let addPost = (postMessage) => {
+    debugger
+    let newPost = {
+        id:5,
+        message:postMessage,
+        countLike:5
+    }
+    state.profilePage.posts.push(newPost)
+}
 
 export  default state;

@@ -38,9 +38,9 @@ function App(props:PropsType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile state={props.state.profilePage}/>} />
+                    < Route path={PATH.PAGE1} element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>} />
 
-                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage} />} />
+                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage}  />} />
 
                     < Route path={PATH.PAGE3} element={<News/>} />
                     < Route path={PATH.PAGE4} element={<Music/>} />
