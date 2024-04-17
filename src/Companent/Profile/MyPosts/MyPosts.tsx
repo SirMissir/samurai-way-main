@@ -1,14 +1,16 @@
-import React, {RefObject, useState} from 'react';
+import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../redux/state";
 
-type PropsType = {
+type ProfileType = {
     posts: Array<PostType>
+    addPost: (postMessage: string) => void;
+    updateNewPostText: (newText: string) => void;
     newPostText:string
 }
 
-function MyPosts(props: PropsType) {
+function MyPosts(props: ProfileType) {
 
     let postsElement = props.posts.map(posts => <Post
         message={posts.message}
@@ -18,9 +20,18 @@ function MyPosts(props: PropsType) {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
-        debugger
-        let text = newPostElement.current?.value
-        props.addPost(text)
+        if(newPostElement.current){
+            props.addPost( newPostElement.current.value)
+        }
+
+    }
+
+    let onPostChange = ()=>{
+        if(newPostElement.current){
+            props.updateNewPostText( newPostElement.current.value)
+        }
+        // let text = newPostElement.current?.value
+        // props.updateNewPostText(text)
     }
 
     return (
@@ -29,6 +40,7 @@ function MyPosts(props: PropsType) {
             <div className={s.item}>
                 <textarea ref={newPostElement}
                           value={props.newPostText}
+                          onChange={onPostChange}
                 />
                 <button onClick={addPost}>Add post</button>
             </div>

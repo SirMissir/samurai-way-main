@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../index";
+
 export type MessageType={
     id: number
     name:string
@@ -57,14 +59,19 @@ let state:RootStateType = {
 
 }
 
-export let addPost = (postMessage) => {
-    debugger
-    let newPost = {
+export let addPost = (postMessage:string) => {
+
+    let newPost:PostType = {
         id:5,
         message:postMessage,
         countLike:5
     }
     state.profilePage.posts.push(newPost)
 }
+
+export let updateNewPostText = (newText:string) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+};
 
 export  default state;
