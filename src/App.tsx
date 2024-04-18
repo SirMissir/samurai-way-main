@@ -29,6 +29,8 @@ type IndexType = {
     state: RootStateType;
     addPost: (postMessage: string) => void;
     updateNewPostText: (newText: string) => void;
+    addMessage: (postMessage: string) => void;
+    updateNewMessageText: (newText: string) => void;
 };
 
 function App(props: IndexType) {
@@ -46,7 +48,12 @@ function App(props: IndexType) {
                         />}
                     />
 
-                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage}/>}/>
+                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage}
+                                                                newMessageText={props.state.dialogsPage.newMessageText}
+                                                                addMessage={props.addMessage}
+                                                                updateNewMessageText={props.updateNewMessageText}
+                        />}
+                    />
 
                     < Route path={PATH.PAGE3} element={<News/>}/>
                     < Route path={PATH.PAGE4} element={<Music/>}/>
