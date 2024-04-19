@@ -22,15 +22,13 @@ const Dialogs = (props:PropsType) => {
     let newPostElement: RefObject<HTMLTextAreaElement>=React.createRef();
 
     let addMessage = () => {
-
         if(newPostElement.current){
             props.addMessage ( newPostElement.current.value);
             props.updateNewMessageText('')
         }
-        rerenderEntireTree(state)
     }
-    let onPostChange = ()=>{
 
+    let onPostChange = ()=>{
         if(newPostElement.current){
             props.updateNewMessageText( newPostElement.current?.value)
         }

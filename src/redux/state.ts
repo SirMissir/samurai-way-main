@@ -1,5 +1,3 @@
-import {rerenderEntireTree} from "../index";
-
 export type MessageType={
     id: number
     name:string
@@ -13,7 +11,6 @@ export type PostType={
     message:string
     countLike:number
 }
-
 export type ProfilePageType={
     posts: Array<PostType>
     newPostText:string
@@ -29,7 +26,6 @@ export type RootStateType={
     dialogsPage:DialogsPageType
     sidebar:SidebarType
 }
-
 
 let state:RootStateType = {
     profilePage:{
@@ -79,7 +75,6 @@ export let addMessage = () => {
     state.dialogsPage.messages.push(newMessage)
 }
 export let updateNewPostText = (newText:string) => {
-
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 };
@@ -88,4 +83,12 @@ export let updateNewMessageText = (newText:string) => {
     state.dialogsPage.newMessageText = newText;
     rerenderEntireTree(state);
 };
+
+let rerenderEntireTree =(state:RootStateType)=>{
+    console.log('Hello')
+}
+export const subscribe = (observe:(state:RootStateType)=>void)=>{
+    rerenderEntireTree=observe
+}
+
 export  default state;

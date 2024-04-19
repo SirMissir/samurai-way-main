@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {HashRouter} from "react-router-dom";
-import state, {addMessage, addPost, RootStateType, updateNewMessageText, updateNewPostText} from "./redux/state";
+import state, {
+    addMessage,
+    addPost,
+    RootStateType,
+    subscribe,
+    updateNewMessageText,
+    updateNewPostText
+} from "./redux/state";
 
 
 export let rerenderEntireTree = (state: RootStateType) => {
@@ -20,3 +27,4 @@ export let rerenderEntireTree = (state: RootStateType) => {
     );
 }
 rerenderEntireTree(state);
+subscribe(rerenderEntireTree)
