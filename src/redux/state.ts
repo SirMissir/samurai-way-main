@@ -57,6 +57,8 @@ let store = {
     sidebar:{}
 
 },
+    getState(){
+        return store._state},
     rerenderEntireTree(){
         console.log('Hello')
     },
@@ -67,11 +69,11 @@ let store = {
             message:store._state.profilePage.newPostText,
             countLike:5
         }
-        state.profilePage.posts.push(newPost)
+        store._state.profilePage.posts.push(newPost)
     },
     updateNewPostText (newText:string){
-        state.profilePage.newPostText = newText;
-        rerenderEntireTree(state);
+        store._state.profilePage.newPostText = newText;
+        store._rerenderEntireTree(store._state);
     },
     addMessage () {
 
@@ -79,15 +81,15 @@ let store = {
             id:5,
             name:state.dialogsPage.newMessageText,
         }
-        state.dialogsPage.messages.push(newMessage)
+        store._state.dialogsPage.messages.push(newMessage)
     },
     updateNewMessageText (newText:string) {
 
-        state.dialogsPage.newMessageText = newText;
-        rerenderEntireTree(state);
+        store._state.dialogsPage.newMessageText = newText;
+        store._rerenderEntireTree(state);
     },
     subscribe(observe:(state:RootStateType)=>void){
-        rerenderEntireTree=observe
+        store._rerenderEntireTree=observe
     }
 
 
