@@ -27,6 +27,17 @@ export type RootStateType={
     sidebar:SidebarType
 }
 
+export type StoreStateType={
+    _state:RootStateType
+    getState:()=>void;
+    _rerenderEntireTree: (state:RootStateType)=>void;
+    addPost: (postMessage: string) => void;
+    updateNewPostText: (newText: string) => void;
+    addMessage: (postMessage: string) => void;
+    updateNewMessageText: (newText: string) => void;
+    subscribe:(observe:(state:RootStateType)=>void)=>void
+}
+
 let store = {
     _state: {
     profilePage:{
@@ -58,43 +69,40 @@ let store = {
 
 },
     getState(){
-        return store._state},
-    rerenderEntireTree(){
+        return this._state},
+    _rerenderEntireTree(state:RootStateType){
         console.log('Hello')
     },
     addPost(){
 
         let newPost:PostType = {
             id:5,
-            message:store._state.profilePage.newPostText,
+            message:this._state.profilePage.newPostText,
             countLike:5
         }
-        store._state.profilePage.posts.push(newPost)
+        this._state.profilePage.posts.push(newPost)
     },
-    updateNewPostText (newText:string){
-        store._state.profilePage.newPostText = newText;
-        store._rerenderEntireTree(store._state);
+    updateNewPostText (newText:string,){
+        this._state.profilePage.newPostText = newText;
+        this._rerenderEntireTree(this._state);
     },
     addMessage () {
 
         let newMessage:MessageType = {
             id:5,
-            name:state.dialogsPage.newMessageText,
+            name:this._state.dialogsPage.newMessageText,
         }
-        store._state.dialogsPage.messages.push(newMessage)
+        this._state.dialogsPage.messages.push(newMessage)
     },
     updateNewMessageText (newText:string) {
 
-        store._state.dialogsPage.newMessageText = newText;
-        store._rerenderEntireTree(state);
+        this._state.dialogsPage.newMessageText = newText;
+        this._rerenderEntireTree(this._state);
     },
     subscribe(observe:(state:RootStateType)=>void){
-        store._rerenderEntireTree=observe
+        this._rerenderEntireTree=observe
     }
-
-
 }
-
 // let state:RootStateType = {
 //     profilePage:{
 //         posts:[
@@ -160,7 +168,5 @@ let store = {
 // }
 //
 // export  default state;
-
-
 export default store;
-window.store = store;
+// window.store = store;

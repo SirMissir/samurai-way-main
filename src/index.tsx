@@ -3,28 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {HashRouter} from "react-router-dom";
-import state, {
-    addMessage,
-    addPost,
-    RootStateType,
-    subscribe,
-    updateNewMessageText,
-    updateNewPostText
-} from "./redux/state";
+import store, { StoreStateType} from "./redux/state";
 
 
-export let rerenderEntireTree = (state: RootStateType) => {
+
+
+let rerenderEntireTree = (store:any) => {
     ReactDOM.render(
         <HashRouter>
-            <App state={state}
-                 addPost={addPost}
-                 updateNewPostText={updateNewPostText}
-                 addMessage={addMessage}
-                 updateNewMessageText={updateNewMessageText}
+            <App state={store.getState()}
+                 addPost={store.addPost}
+                 updateNewPostText={store.updateNewPostText}
+                 addMessage={store.addMessage}
+                 updateNewMessageText={store.updateNewMessageText}
             />
         </HashRouter>,
         document.getElementById('root')
     );
 }
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree)
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);
