@@ -2,8 +2,8 @@ import React, {RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import state, {DialogsPageType, updateNewMessageText} from "../../redux/state";
-import {rerenderEntireTree} from "../../index";
+import state, {DialogsPageType} from "../../redux/state";
+
 
 
 type PropsType={

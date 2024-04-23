@@ -29,7 +29,7 @@ export type RootStateType={
 
 export type StoreStateType={
     _state:RootStateType
-    getState:()=>void;
+    getState:()=>RootStateType;
     _rerenderEntireTree: (state:RootStateType)=>void;
     addPost: (postMessage: string) => void;
     updateNewPostText: (newText: string) => void;
@@ -38,7 +38,7 @@ export type StoreStateType={
     subscribe:(observe:(state:RootStateType)=>void)=>void
 }
 
-let store = {
+let store:StoreStateType = {
     _state: {
     profilePage:{
         posts:[
@@ -70,7 +70,7 @@ let store = {
 },
     getState(){
         return this._state},
-    _rerenderEntireTree(state:RootStateType){
+    _rerenderEntireTree(){
         console.log('Hello')
     },
     addPost(){
@@ -99,7 +99,7 @@ let store = {
         this._state.dialogsPage.newMessageText = newText;
         this._rerenderEntireTree(this._state);
     },
-    subscribe(observe:(state:RootStateType)=>void){
+    subscribe(observe){
         this._rerenderEntireTree=observe
     }
 }

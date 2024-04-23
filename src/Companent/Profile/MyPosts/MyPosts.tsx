@@ -2,7 +2,8 @@ import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import state, {PostType} from "../../../redux/state";
-import {rerenderEntireTree} from "../../../index";
+import store from "../../../redux/state";
+
 
 type ProfileType = {
     posts: Array<PostType>
@@ -25,7 +26,7 @@ function MyPosts(props: ProfileType) {
             props.addPost( newPostElement.current.value);
             props.updateNewPostText('')
         }
-        rerenderEntireTree(state)
+        store.subscribe(rerenderEntireTree);
     }
 
     let onPostChange = ()=>{
