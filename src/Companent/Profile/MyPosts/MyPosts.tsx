@@ -26,7 +26,7 @@ function MyPosts(props: ProfileType) {
             props.addPost( newPostElement.current.value);
             props.updateNewPostText('')
         }
-        store.subscribe(rerenderEntireTree);
+        store.subscribe(store.getState);
     }
 
     let onPostChange = ()=>{

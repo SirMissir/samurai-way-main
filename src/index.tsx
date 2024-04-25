@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {HashRouter} from "react-router-dom";
-import store, { StoreStateType} from "./redux/state";
+import store, {RootStateType, StoreStateType} from "./redux/state";
 
 
 
 
-let rerenderEntireTree = (store:any) => {
+let rerenderEntireTree = (state:RootStateType) => {
     ReactDOM.render(
         <HashRouter>
-            <App state={store.getState()}
+            <App state={state}
                  addPost={store.addPost}
                  updateNewPostText={store.updateNewPostText}
                  addMessage={store.addMessage}
