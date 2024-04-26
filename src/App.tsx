@@ -9,7 +9,7 @@ import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 // import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {RootStateType} from "./redux/state";
+import {RootStateType, StoreStateType} from "./redux/state";
 
 export type PathsType = {
     paths: {
@@ -25,15 +25,19 @@ const PATH = {
     ERORR: '/Error404',
 } as const
 
-type IndexType = {
-    state: RootStateType;
-    addPost: (postMessage: string) => void;
-    updateNewPostText: (newText: string) => void;
-    addMessage: (postMessage: string) => void;
-    updateNewMessageText: (newText: string) => void;
-};
+// type IndexType = {
+//     state: RootStateType;
+//     addPost: (postMessage: string) => void;
+//     updateNewPostText: (newText: string) => void;
+//     addMessage: (postMessage: string) => void;
+//     updateNewMessageText: (newText: string) => void;
+// };
+type PropsType = {
+    store:StoreStateType
+}
 
-function App(props: IndexType) {
+function App(props:  PropsType) {
+    const state = props.store.getState();
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -42,16 +46,16 @@ function App(props: IndexType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile profilePage={props.state.profilePage}
-                                                                addPost={props.addPost}
-                                                                updateNewPostText={props.updateNewPostText}
+                    < Route path={PATH.PAGE1} element={<Profile profilePage={state.profilePage}
+                                                                addPost={state.addPost}
+                                                                updateNewPostText={state.updateNewPostText}
                         />}
                     />
 
-                    < Route path={PATH.PAGE2} element={<Dialogs state={props.state.dialogsPage}
-                                                                newMessageText={props.state.dialogsPage.newMessageText}
-                                                                addMessage={props.addMessage}
-                                                                updateNewMessageText={props.updateNewMessageText}
+                    < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
+                                                                newMessageText={state.dialogsPage.newMessageText}
+                                                                addMessage={state.addMessage}
+                                                                updateNewMessageText={state.updateNewMessageText}
                         />}
                     />
 

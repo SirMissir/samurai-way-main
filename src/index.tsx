@@ -11,11 +11,13 @@ import store, {RootStateType, StoreStateType} from "./redux/state";
 let rerenderEntireTree = (state:RootStateType) => {
     ReactDOM.render(
         <HashRouter>
-            <App state={state}
-                 addPost={store.addPost}
-                 updateNewPostText={store.updateNewPostText}
-                 addMessage={store.addMessage}
-                 updateNewMessageText={store.updateNewMessageText}
+            <App
+                store={store}
+                // state={state}
+                //  addPost={store.addPost}
+                //  updateNewPostText={store.updateNewPostText}
+                //  addMessage={store.addMessage}
+                //  updateNewMessageText={store.updateNewMessageText}
             />
         </HashRouter>,
         document.getElementById('root')
