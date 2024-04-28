@@ -9,7 +9,7 @@ import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 // import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {RootStateType, StoreStateType} from "./redux/state";
+import store, {RootStateType, StoreStateType} from "./redux/state";
 
 export type PathsType = {
     paths: {
@@ -25,18 +25,17 @@ const PATH = {
     ERORR: '/Error404',
 } as const
 
-// type IndexType = {
-//     state: RootStateType;
-//     addPost: (postMessage: string) => void;
-//     updateNewPostText: (newText: string) => void;
-//     addMessage: (postMessage: string) => void;
-//     updateNewMessageText: (newText: string) => void;
-// };
-type PropsType = {
+type IndexType = {
     store:StoreStateType
-}
+    state: RootStateType;
+    addPost: (postMessage: string) => void;
+    updateNewPostText: (newText: string) => void;
+    addMessage: (postMessage: string) => void;
+    updateNewMessageText: (newText: string) => void;
+};
 
-function App(props:  PropsType) {
+
+function App(props:  IndexType) {
     const state = props.store.getState();
     return (
         <div className='app-wrapper'>
@@ -46,16 +45,16 @@ function App(props:  PropsType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile profilePage={props.store.profilePage}
-                                                                addPost={props.store.addPost}
+                    < Route path={PATH.PAGE1} element={<Profile profilePage={state.profilePage}
+                                                                addPost={store.addPost.bind(store)}
                                                                 updateNewPostText={props.store.updateNewPostText}
                         />}
                     />
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
                                                                 newMessageText={state.dialogsPage.newMessageText}
-                                                                addMessage={state.addMessage}
-                                                                updateNewMessageText={state.updateNewMessageText}
+                                                                addMessage={props.store.addMessage}
+                                                                updateNewMessageText={props.store.updateNewMessageText}
                         />}
                     />
 

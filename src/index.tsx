@@ -13,11 +13,11 @@ let rerenderEntireTree = (state:RootStateType) => {
         <HashRouter>
             <App
                 store={store}
-                // state={state}
-                //  addPost={store.addPost}
-                //  updateNewPostText={store.updateNewPostText}
-                //  addMessage={store.addMessage}
-                //  updateNewMessageText={store.updateNewMessageText}
+                state={state}
+                 addPost={store.addPost.bind(store)}
+                 updateNewPostText={store.updateNewPostText.bind(store)}
+                 addMessage={store.addMessage}
+                 updateNewMessageText={store.updateNewMessageText}
             />
         </HashRouter>,
         document.getElementById('root')

@@ -74,7 +74,7 @@ let store:StoreStateType = {
         console.log('Hello')
     },
     addPost(){
-
+        debugger
         let newPost:PostType = {
             id:5,
             message:this._state.profilePage.newPostText,
