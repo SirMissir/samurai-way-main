@@ -46,9 +46,9 @@ function App(props:  PropsType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile profilePage={state.profilePage}
-                                                                addPost={state.addPost}
-                                                                updateNewPostText={state.updateNewPostText}
+                    < Route path={PATH.PAGE1} element={<Profile profilePage={props.store.profilePage}
+                                                                addPost={props.store.addPost}
+                                                                updateNewPostText={props.store.updateNewPostText}
                         />}
                     />
 
