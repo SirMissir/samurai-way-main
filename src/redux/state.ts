@@ -68,13 +68,12 @@ let store:StoreStateType = {
     sidebar:{}
 
 },
-    getState(){
-        return this._state},
     _rerenderEntireTree(){
         console.log('Hello')
     },
+    getState(){
+        return this._state},
     addPost(){
-        debugger
         let newPost:PostType = {
             id:5,
             message:this._state.profilePage.newPostText,
@@ -82,7 +81,8 @@ let store:StoreStateType = {
         }
         this._state.profilePage.posts.push(newPost)
     },
-    updateNewPostText (newText:string,){
+    updateNewPostText (newText:string){
+        debugger
         this._state.profilePage.newPostText = newText;
         this._rerenderEntireTree(this._state);
     },
@@ -101,6 +101,22 @@ let store:StoreStateType = {
     },
     subscribe(observe){
         this._rerenderEntireTree=observe
+    }
+    dispatch(action){
+       if (action.type === 'ADD-POST'){
+           let newPost:PostType = {
+               id:5,
+               message:this._state.profilePage.newPostText,
+               countLike:5
+           }
+           this._state.profilePage.posts.push(newPost);
+           this._state.profilePage.newPostText='';
+           this.subscribe(this.getState)
+
+       } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+           this._state.profilePage.newPostText = newText;
+           this._rerenderEntireTree(this._state);
+       }
     }
 }
 // let state:RootStateType = {

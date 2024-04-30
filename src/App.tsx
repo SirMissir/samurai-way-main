@@ -47,14 +47,14 @@ function App(props:  IndexType) {
 
                     < Route path={PATH.PAGE1} element={<Profile profilePage={state.profilePage}
                                                                 addPost={store.addPost.bind(store)}
-                                                                updateNewPostText={props.store.updateNewPostText}
+                                                                updateNewPostText={props.store.updateNewPostText.bind(store)}
                         />}
                     />
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
                                                                 newMessageText={state.dialogsPage.newMessageText}
-                                                                addMessage={props.store.addMessage}
-                                                                updateNewMessageText={props.store.updateNewMessageText}
+                                                                addMessage={props.store.addMessage.bind(store)}
+                                                                updateNewMessageText={props.store.updateNewMessageText.bind(store)}
                         />}
                     />
 

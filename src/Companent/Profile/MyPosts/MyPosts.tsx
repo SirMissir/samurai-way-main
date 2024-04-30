@@ -24,12 +24,11 @@ function MyPosts(props: ProfileType) {
     let addPost = () => {
         if(newPostElement.current){
             props.addPost( newPostElement.current.value);
-            props.updateNewPostText('')
         }
-        store.subscribe(store.getState);
     }
 
     let onPostChange = ()=>{
+        debugger
         if(newPostElement.current){
             props.updateNewPostText( newPostElement.current.value)
         }
