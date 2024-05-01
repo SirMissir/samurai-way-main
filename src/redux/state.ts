@@ -74,12 +74,16 @@ let store:StoreStateType = {
     getState(){
         return this._state},
     addPost(){
+        debugger
         let newPost:PostType = {
             id:5,
             message:this._state.profilePage.newPostText,
             countLike:5
         }
         this._state.profilePage.posts.push(newPost)
+        this._state.profilePage.newPostText='';
+        this._rerenderEntireTree(this._state);
+
     },
     updateNewPostText (newText:string){
         debugger
@@ -102,22 +106,22 @@ let store:StoreStateType = {
     subscribe(observe){
         this._rerenderEntireTree=observe
     }
-    dispatch(action){
-       if (action.type === 'ADD-POST'){
-           let newPost:PostType = {
-               id:5,
-               message:this._state.profilePage.newPostText,
-               countLike:5
-           }
-           this._state.profilePage.posts.push(newPost);
-           this._state.profilePage.newPostText='';
-           this.subscribe(this.getState)
-
-       } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-           this._state.profilePage.newPostText = newText;
-           this._rerenderEntireTree(this._state);
-       }
-    }
+    // dispatch(action){
+    //    if (action.type === 'ADD-POST'){
+    //        let newPost:PostType = {
+    //            id:5,
+    //            message:this._state.profilePage.newPostText,
+    //            countLike:5
+    //        }
+    //        this._state.profilePage.posts.push(newPost);
+    //        this._state.profilePage.newPostText='';
+    //        this.subscribe(this.getState)
+    //
+    //    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+    //        this._state.profilePage.newPostText = action.newText;
+    //        this._rerenderEntireTree(this._state);
+    //    }
+    // }
 }
 // let state:RootStateType = {
 //     profilePage:{

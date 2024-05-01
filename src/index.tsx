@@ -12,6 +12,7 @@ let rerenderEntireTree = (state:RootStateType) => {
     ReactDOM.render(
         <HashRouter>
             <App
+                dispatch={store.dispatch.bind(store)}
                 store={store}
                 state={state}
                  addPost={store.addPost.bind(store)}
