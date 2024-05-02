@@ -15,10 +15,10 @@ let rerenderEntireTree = (state:RootStateType) => {
                 dispatch={store.dispatch.bind(store)}
                 store={store}
                 state={state}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-                 addMessage={store.addMessage.bind(store)}
-                 updateNewMessageText={store.updateNewMessageText.bind(store)}
+                 // addPost={store.addPost.bind(store)}
+                 // updateNewPostText={store.updateNewPostText.bind(store)}
+                 // addMessage={store.addMessage.bind(store)}
+                 // updateNewMessageText={store.updateNewMessageText.bind(store)}
             />
         </HashRouter>,
         document.getElementById('root')

@@ -9,7 +9,8 @@ type ProfileType = {
     posts: Array<PostType>
     addPost: (postMessage: string) => void;
     updateNewPostText: (newText: string) => void;
-    newPostText:string
+    postMessage:string
+
 }
 
 function MyPosts(props: ProfileType) {
@@ -22,18 +23,21 @@ function MyPosts(props: ProfileType) {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
-        debugger
-        if(newPostElement.current){
-            props.addPost( newPostElement.current.value);
-        }
+        // if(newPostElement.current){
+        //     props.addPost( newPostElement.current.value);
+        // }
+        props.dispatch({type:'ADD-POST'})
     }
 
+
     let onPostChange = ()=>{
-        debugger
-        if(newPostElement.current){
-            props.updateNewPostText( newPostElement.current?.value)
-        }
+        let newText =  newPostElement.current?.value
+        // if(newPostElement.current){
+        //     props.updateNewPostText( newPostElement.current?.value)
+        // }
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:newText})
     }
+
 
     return (
         <div className={s.myPosts}>
@@ -41,7 +45,7 @@ function MyPosts(props: ProfileType) {
             <div className={s.item}>
                 <textarea
                     ref={newPostElement}
-                    value={props.newPostText}
+                    value={props.postMessage}
                     onChange={onPostChange}
                 />
                 <button onClick={addPost}>Add post</button>

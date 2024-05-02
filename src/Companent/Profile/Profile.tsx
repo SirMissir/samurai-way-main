@@ -16,10 +16,11 @@ function Profile(props:AppType) {
         <div className={s.content}>
             <div>
                 <ProfileInfo/>
-                <MyPosts posts={props.profilePage.posts}
-                         newPostText={props.profilePage.newPostText}
-                         addPost={props.addPost}
-                         updateNewPostText={props.updateNewPostText}
+                <MyPosts dispatcg={props.dispatch}
+                         posts={props.profilePage.posts}
+                         newPostText={props.profilePage.postMessage}
+                         // addPost={props.addPost}
+                         // updateNewPostText={props.updateNewPostText}
                 />
             </div>
 

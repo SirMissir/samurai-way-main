@@ -13,7 +13,7 @@ export type PostType={
 }
 export type ProfilePageType={
     posts: Array<PostType>
-    newPostText:string
+    postMessage:string
 }
 export type DialogsPageType={
     dialogs:Array<DialogType>
@@ -36,8 +36,16 @@ export type StoreStateType={
     addMessage: (postMessage: string) => void;
     updateNewMessageText: (newText: string) => void;
     subscribe:(observe:(state:RootStateType)=>void)=>void
+    dispatch(action:any)=>void
 }
-
+type AddPostActionType={
+    type:'ADD-POST'
+    newPostText:string
+}
+type ChangeNewTextActionType={
+    type:'UPDATE-NEW-POST-TEXT'
+    newText:string
+}
 let store:StoreStateType = {
     _state: {
     profilePage:{
@@ -46,7 +54,7 @@ let store:StoreStateType = {
             {id:2, message:"It is my first post", countLike:30},
 
         ],
-        newPostText: ''
+        postMessage: ''
     },
     dialogsPage:{
         dialogs:[
@@ -73,8 +81,8 @@ let store:StoreStateType = {
     },
     getState(){
         return this._state},
-    addPost(){
-        debugger
+    addPost(postMessage:string){
+
         let newPost:PostType = {
             id:5,
             message:this._state.profilePage.newPostText,
@@ -86,7 +94,6 @@ let store:StoreStateType = {
 
     },
     updateNewPostText (newText:string){
-        debugger
         this._state.profilePage.newPostText = newText;
         this._rerenderEntireTree(this._state);
     },
@@ -106,22 +113,22 @@ let store:StoreStateType = {
     subscribe(observe){
         this._rerenderEntireTree=observe
     }
-    // dispatch(action){
-    //    if (action.type === 'ADD-POST'){
-    //        let newPost:PostType = {
-    //            id:5,
-    //            message:this._state.profilePage.newPostText,
-    //            countLike:5
-    //        }
-    //        this._state.profilePage.posts.push(newPost);
-    //        this._state.profilePage.newPostText='';
-    //        this.subscribe(this.getState)
-    //
-    //    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-    //        this._state.profilePage.newPostText = action.newText;
-    //        this._rerenderEntireTree(this._state);
-    //    }
-    // }
+    dispatch(action){
+       if (action.type === 'ADD-POST'){
+           let newPost:PostType = {
+               id:5,
+               message:postMessage,
+               countLike:5
+           }
+           this._state.profilePage.posts.push(newPost);
+           this._state.profilePage.newPostText='';
+           this.subscribe(this.getState)
+
+       } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+           this._state.profilePage.newPostText = action.newText;
+           this._rerenderEntireTree(this._state);
+       }
+    }
 }
 // let state:RootStateType = {
 //     profilePage:{

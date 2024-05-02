@@ -45,9 +45,10 @@ function App(props:  IndexType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile profilePage={state.profilePage}
-                                                                addPost={store.addPost.bind(store)}
-                                                                updateNewPostText={props.store.updateNewPostText.bind(store)}
+                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.dispatch}
+                                                                profilePage={state.profilePage}
+                                                                // addPost={store.addPost.bind(store)}
+                                                                // updateNewPostText={props.store.updateNewPostText.bind(store)}
                         />}
                     />
 
