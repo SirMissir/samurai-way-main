@@ -36,16 +36,19 @@ export type StoreStateType={
     addMessage: (postMessage: string) => void;
     updateNewMessageText: (newText: string) => void;
     subscribe:(observe:(state:RootStateType)=>void)=>void
-    dispatch(action:any)=>void
+    dispatch:(action:ActionsTypes) => void
 }
 type AddPostActionType={
-    type:'ADD-POST'
-    newPostText:string
+    type:'ADD-POST',
+    postMessage:string
 }
 type ChangeNewTextActionType={
-    type:'UPDATE-NEW-POST-TEXT'
+    type:'UPDATE-NEW-POST-TEXT',
     newText:string
 }
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+
 let store:StoreStateType = {
     _state: {
     profilePage:{
@@ -81,22 +84,23 @@ let store:StoreStateType = {
     },
     getState(){
         return this._state},
-    addPost(postMessage:string){
+    // addPost(postMessage:string){
+    //
+    //     let newPost:PostType = {
+    //         id:5,
+    //         message:this._state.profilePage.newPostText,
+    //         countLike:5
+    //     }
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostText='';
+    //     this._rerenderEntireTree(this._state);
+    //
+    // },
 
-        let newPost:PostType = {
-            id:5,
-            message:this._state.profilePage.newPostText,
-            countLike:5
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText='';
-        this._rerenderEntireTree(this._state);
-
-    },
-    updateNewPostText (newText:string){
-        this._state.profilePage.newPostText = newText;
-        this._rerenderEntireTree(this._state);
-    },
+    // updateNewPostText (newText:string){
+    //     this._state.profilePage.newPostText = newText;
+    //     this._rerenderEntireTree(this._state);
+    // },
     addMessage () {
 
         let newMessage:MessageType = {
@@ -112,20 +116,20 @@ let store:StoreStateType = {
     },
     subscribe(observe){
         this._rerenderEntireTree=observe
-    }
+    },
     dispatch(action){
        if (action.type === 'ADD-POST'){
            let newPost:PostType = {
                id:5,
-               message:postMessage,
+               message:this._state.profilePage.postMessage = action.postMessage,
                countLike:5
            }
            this._state.profilePage.posts.push(newPost);
-           this._state.profilePage.newPostText='';
+           this._state.profilePage.postMessage='';
            this.subscribe(this.getState)
 
        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-           this._state.profilePage.newPostText = action.newText;
+           this._state.profilePage.postMessage = action.newText;
            this._rerenderEntireTree(this._state);
        }
     }

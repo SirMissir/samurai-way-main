@@ -9,7 +9,7 @@ import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 // import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import store, {RootStateType, StoreStateType} from "./redux/state";
+import store, {ActionsTypes, RootStateType, StoreStateType} from "./redux/state";
 
 export type PathsType = {
     paths: {
@@ -27,11 +27,11 @@ const PATH = {
 
 type IndexType = {
     store:StoreStateType
-    state: RootStateType;
     addPost: (postMessage: string) => void;
     updateNewPostText: (newText: string) => void;
     addMessage: (postMessage: string) => void;
     updateNewMessageText: (newText: string) => void;
+    dispatch:(action:ActionsTypes)=>void
 };
 
 
@@ -45,7 +45,7 @@ function App(props:  IndexType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.dispatch}
+                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.store.dispatch.bind(store)}
                                                                 profilePage={state.profilePage}
                                                                 // addPost={store.addPost.bind(store)}
                                                                 // updateNewPostText={props.store.updateNewPostText.bind(store)}
