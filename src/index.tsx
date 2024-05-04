@@ -8,16 +8,16 @@ import store, {RootStateType, StoreStateType} from "./redux/state";
 
 
 
-let rerenderEntireTree = (state:RootStateType) => {
+let rerenderEntireTree = () => {
     ReactDOM.render(
         <HashRouter>
             <App
-                dispatch={store.dispatch.bind(store)}
+                // dispatch={store.dispatch.bind(store)}
                 // store={store}
-                 // addPost={store.addPost.bind(store)}
-                 // updateNewPostText={store.updateNewPostText.bind(store)}
-                 // addMessage={store.addMessage.bind(store)}
-                 // updateNewMessageText={store.updateNewMessageText.bind(store)}
+                //  addPost={store.addPost.bind(store)}
+                //  updateNewPostText={store.updateNewPostText.bind(store)}
+                //  addMessage={store.addMessage.bind(store)}
+                //  updateNewMessageText={store.updateNewMessageText.bind(store)}
             />
         </HashRouter>,
         document.getElementById('root')

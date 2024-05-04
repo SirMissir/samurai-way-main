@@ -29,12 +29,16 @@ export type RootStateType={
 
 export type StoreStateType={
     _state:RootStateType
-    getState:()=>RootStateType;
     _rerenderEntireTree: (state:RootStateType)=>void;
-    addPost: (postMessage: string) => void;
+
+    getState:()=>RootStateType;
+
     updateNewPostText: (newText: string) => void;
-    addMessage: (postMessage: string) => void;
     updateNewMessageText: (newText: string) => void;
+
+    addPost: (postMessage: string) => void;
+    addMessage: (postMessage: string) => void;
+
     subscribe:(observe:(state:RootStateType)=>void)=>void
     dispatch:(action:ActionsTypes) => void
 }
@@ -84,23 +88,22 @@ let store:StoreStateType = {
     },
     getState(){
         return this._state},
-    // addPost(postMessage:string){
-    //
-    //     let newPost:PostType = {
-    //         id:5,
-    //         message:this._state.profilePage.newPostText,
-    //         countLike:5
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText='';
-    //     this._rerenderEntireTree(this._state);
-    //
-    // },
+    addPost(postMessage:string){
 
-    // updateNewPostText (newText:string){
-    //     this._state.profilePage.newPostText = newText;
-    //     this._rerenderEntireTree(this._state);
-    // },
+        let newPost:PostType = {
+            id:5,
+            message:this._state.profilePage.postMessage,
+            countLike:5
+        }
+        this._state.profilePage.posts.push(newPost)
+        this._state.profilePage.postMessage='';
+        this._rerenderEntireTree(this._state);
+
+    },
+    updateNewPostText (newText:string){
+        this._state.profilePage.postMessage = newText;
+        this._rerenderEntireTree(this._state);
+    },
     addMessage () {
 
         let newMessage:MessageType = {

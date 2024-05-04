@@ -5,16 +5,16 @@ import state, {ActionsTypes, PostType} from "../../../redux/state";
 import store from "../../../redux/state";
 
 
-type ProfileType = {
-    posts: Array<PostType>
-    addPost: (postMessage: string) => void;
-    updateNewPostText: (newText: string) => void;
-    postMessage:string|undefined
-    dispatch:(action:ActionsTypes)=>void
+// type ProfileType = {
+//     posts: Array<PostType>
+//     addPost: (postMessage: string) => void;
+//     updateNewPostText: (newText: string) => void;
+//     postMessage:string|undefined
+//     dispatch:(action:ActionsTypes)=>void
+//
+// }
 
-}
-
-function MyPosts(props: ProfileType) {
+function MyPosts(props: ) {
 
     let postsElement = props.posts.map(posts => <Post
         message={posts.message}

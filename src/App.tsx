@@ -25,17 +25,17 @@ const PATH = {
     ERORR: '/Error404',
 } as const
 
-type IndexType = {
-    store:StoreStateType
-    addPost: (postMessage: string) => void;
-    updateNewPostText: (newText: string) => void;
-    addMessage: (postMessage: string) => void;
-    updateNewMessageText: (newText: string) => void;
-    dispatch:(action:ActionsTypes)=>void
-};
+// type IndexType = {
+//     // store:StoreStateType
+//     // addPost: (postMessage: string) => void;
+//     // updateNewPostText: (newText: string) => void;
+//     // addMessage: (postMessage: string) => void;
+//     // updateNewMessageText: (newText: string) => void;
+//     dispatch:(action:ActionsTypes)=>void
+// };
 
 
-function App(props:  IndexType) {
+function App(props: ) {
     const state = props.store.getState();
     return (
         <div className='app-wrapper'>
