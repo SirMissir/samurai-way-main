@@ -84,6 +84,7 @@ let store:StoreStateType = {
 
 },
     _rerenderEntireTree(){
+        debugger
         console.log('Hello')
     },
     getState(){
@@ -118,10 +119,13 @@ let store:StoreStateType = {
         this._rerenderEntireTree(this._state);
     },
     subscribe(observe){
+        debugger
         this._rerenderEntireTree=observe
     },
     dispatch(action){
+        debugger
        if (action.type === 'ADD-POST'){
+           debugger
            let newPost:PostType = {
                id:5,
                message:this._state.profilePage.postMessage = action.postMessage,
@@ -129,78 +133,14 @@ let store:StoreStateType = {
            }
            this._state.profilePage.posts.push(newPost);
            this._state.profilePage.postMessage='';
-           this.subscribe(this.getState)
+           this._rerenderEntireTree(this._state);
 
        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+           debugger
            this._state.profilePage.postMessage = action.newText;
            this._rerenderEntireTree(this._state);
        }
     }
 }
-// let state:RootStateType = {
-//     profilePage:{
-//         posts:[
-//             {id:1, message:'Hi,how are you',countLike:20},
-//             {id:2, message:"It is my first post", countLike:30},
-//
-//         ],
-//         newPostText: ''
-//     },
-//     dialogsPage:{
-//         dialogs:[
-//             {id:1, name:"Dimych"},
-//             {id:2, name:"Andrey"},
-//             {id:3, name:"Sveta"},
-//             {id:4, name:"Lera"},
-//             {id:5, name:"Victor"}
-//         ],
-//         messages:[
-//             {id:1, name:"Hi"},
-//             {id:2, name:"How is your it-kamasutra"},
-//             {id:3, name:"OK"},
-//             {id:4, name:"How much your learning"},
-//             {id:5, name:"Victor"}
-//         ],
-//         newMessageText: ''
-//     },
-//     sidebar:{}
-//
-// }
-//
-// export let addPost = () => {
-//
-//     let newPost:PostType = {
-//         id:5,
-//         message:state.profilePage.newPostText,
-//         countLike:5
-//     }
-//     state.profilePage.posts.push(newPost)
-// }
-// export let addMessage = () => {
-//
-//     let newMessage:MessageType = {
-//         id:5,
-//         name:state.dialogsPage.newMessageText,
-//     }
-//     state.dialogsPage.messages.push(newMessage)
-// }
-// export let updateNewPostText = (newText:string) => {
-//     state.profilePage.newPostText = newText;
-//     rerenderEntireTree(state);
-// };
-// export let updateNewMessageText = (newText:string) => {
-//
-//     state.dialogsPage.newMessageText = newText;
-//     rerenderEntireTree(state);
-// };
-//
-// let rerenderEntireTree =(state:RootStateType)=>{
-//     console.log('Hello')
-// }
-// export const subscribe = (observe:(state:RootStateType)=>void)=>{
-//     rerenderEntireTree=observe
-// }
-//
-// export  default state;
+
 export default store;
-// window.store = store;

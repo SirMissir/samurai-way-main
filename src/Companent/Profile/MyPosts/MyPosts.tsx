@@ -5,16 +5,13 @@ import state, {ActionsTypes, PostType} from "../../../redux/state";
 import store from "../../../redux/state";
 
 
-// type ProfileType = {
-//     posts: Array<PostType>
-//     addPost: (postMessage: string) => void;
-//     updateNewPostText: (newText: string) => void;
-//     postMessage:string|undefined
-//     dispatch:(action:ActionsTypes)=>void
-//
-// }
+type ProfileType = {
+    posts: Array<PostType>
+    newPostText:string
+    dispatch:(action:ActionsTypes)=>void
+}
 
-function MyPosts(props: ) {
+function MyPosts(props:ProfileType ) {
 
     let postsElement = props.posts.map(posts => <Post
         message={posts.message}
@@ -24,6 +21,7 @@ function MyPosts(props: ) {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
+        debugger
         if(newPostElement.current){
             props.dispatch({type:'ADD-POST',postMessage:newPostElement.current?.value})
         }
@@ -31,6 +29,7 @@ function MyPosts(props: ) {
 
 
     let onPostChange = ()=>{
+        debugger
         if(newPostElement.current){
             props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:newPostElement.current?.value})
 
@@ -44,7 +43,7 @@ function MyPosts(props: ) {
             <div className={s.item}>
                 <textarea
                     ref={newPostElement}
-                    value={props.postMessage}
+                    value={props.newPostText}
                     onChange={onPostChange}
                 />
                 <button onClick={addPost}>Add post</button>
