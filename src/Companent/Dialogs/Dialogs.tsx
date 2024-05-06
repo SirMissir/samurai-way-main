@@ -8,8 +8,6 @@ import state, {DialogsPageType} from "../../redux/state";
 
 type PropsType={
     state:DialogsPageType
-    addMessage:(postMessageText: string)=>void
-    updateNewMessageText:(newText: string)=>void
     newMessageText:string
 }
 
@@ -23,14 +21,13 @@ const Dialogs = (props:PropsType) => {
 
     let addMessage = () => {
         if(newPostElement.current){
-            props.addMessage ( newPostElement.current.value);
-            props.updateNewMessageText('')
+            props.dispatch({type:'ADD-MESSAGE',postMessage:newPostElement.current?.value})
         }
     }
 
     let onPostChange = ()=>{
         if(newPostElement.current){
-            props.updateNewMessageText( newPostElement.current?.value)
+            props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT',newText:newPostElement.current?.value})
         }
     }
 

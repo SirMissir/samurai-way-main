@@ -21,7 +21,6 @@ function MyPosts(props:ProfileType ) {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
-        debugger
         if(newPostElement.current){
             props.dispatch({type:'ADD-POST',postMessage:newPostElement.current?.value})
         }
@@ -29,7 +28,6 @@ function MyPosts(props:ProfileType ) {
 
 
     let onPostChange = ()=>{
-        debugger
         if(newPostElement.current){
             props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:newPostElement.current?.value})
 

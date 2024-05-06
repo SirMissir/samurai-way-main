@@ -27,11 +27,6 @@ const PATH = {
 
 type IndexType = {
     store:StoreStateType
-//     // addPost: (postMessage: string) => void;
-//     // updateNewPostText: (newText: string) => void;
-//     // addMessage: (postMessage: string) => void;
-//     // updateNewMessageText: (newText: string) => void;
-//     dispatch:(action:ActionsTypes)=>void
 };
 
 
@@ -53,8 +48,10 @@ function App(props:IndexType ) {
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
                                                                 newMessageText={state.dialogsPage.newMessageText}
-                                                                addMessage={props.store.addMessage.bind(store)}
-                                                                updateNewMessageText={props.store.updateNewMessageText.bind(store)}
+                                                                dispatch={props.store.dispatch.bind(store)}
+
+                                                                // addMessage={props.store.addMessage.bind(store)}
+                                                                // updateNewMessageText={props.store.updateNewMessageText.bind(store)}
                         />}
                     />
 

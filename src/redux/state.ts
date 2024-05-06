@@ -123,9 +123,7 @@ let store:StoreStateType = {
         this._rerenderEntireTree=observe
     },
     dispatch(action){
-        debugger
        if (action.type === 'ADD-POST'){
-           debugger
            let newPost:PostType = {
                id:5,
                message:this._state.profilePage.postMessage = action.postMessage,
@@ -135,8 +133,22 @@ let store:StoreStateType = {
            this._state.profilePage.postMessage='';
            this._rerenderEntireTree(this._state);
 
-       } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+       }else if (action.type === 'ADD-MESSAGE'){
+            let newMessage:MessageType = {
+                id:5,
+                name:this._state.dialogsPage.newMessageText,
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText='';
+            this._rerenderEntireTree(this._state);
+
+        }
+         else if (action.type === 'UPDATE-NEW-POST-TEXT'){
            debugger
+           this._state.profilePage.postMessage = action.newText;
+           this._rerenderEntireTree(this._state);
+
+       }else  if (action.type === 'UPDATE-NEW-MESSAGE-TEXT'){
            this._state.profilePage.postMessage = action.newText;
            this._rerenderEntireTree(this._state);
        }
