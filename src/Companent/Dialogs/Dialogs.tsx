@@ -2,13 +2,13 @@ import React, {RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import state, {DialogsPageType} from "../../redux/state";
+import state, {ActionsTypes, DialogsPageType} from "../../redux/state";
 
 
 
 type PropsType={
     state:DialogsPageType
-    newMessageText:string
+    dispatch:(action:ActionsTypes)=>void
 }
 
 
@@ -20,12 +20,14 @@ const Dialogs = (props:PropsType) => {
     let newPostElement: RefObject<HTMLTextAreaElement>=React.createRef();
 
     let addMessage = () => {
+        debugger
         if(newPostElement.current){
             props.dispatch({type:'ADD-MESSAGE',postMessage:newPostElement.current?.value})
         }
     }
 
     let onPostChange = ()=>{
+        debugger
         if(newPostElement.current){
             props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT',newText:newPostElement.current?.value})
         }
@@ -41,7 +43,7 @@ const Dialogs = (props:PropsType) => {
               <div className={s.item}>
                   <textarea
                       ref={newPostElement}
-                      value={props.newMessageText}
+                      value={props.state.newMessageText}
                       onChange={onPostChange}
                   />
                   <button onClick={addMessage}>Add post</button>

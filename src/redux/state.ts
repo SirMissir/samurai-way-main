@@ -50,8 +50,16 @@ type ChangeNewTextActionType={
     type:'UPDATE-NEW-POST-TEXT',
     newText:string
 }
+type AddMessageActionType={
+    type:'ADD-MESSAGE',
+    postMessage:string
+}
+type ChangeNewMessageActionType={
+    type:'UPDATE-NEW-MESSAGE-TEXT',
+    newText:string
+}
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
 
 let store:StoreStateType = {
     _state: {
@@ -89,37 +97,36 @@ let store:StoreStateType = {
     },
     getState(){
         return this._state},
-    addPost(postMessage:string){
-
-        let newPost:PostType = {
-            id:5,
-            message:this._state.profilePage.postMessage,
-            countLike:5
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.postMessage='';
-        this._rerenderEntireTree(this._state);
-
-    },
-    updateNewPostText (newText:string){
-        this._state.profilePage.postMessage = newText;
-        this._rerenderEntireTree(this._state);
-    },
-    addMessage () {
-
-        let newMessage:MessageType = {
-            id:5,
-            name:this._state.dialogsPage.newMessageText,
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-    },
-    updateNewMessageText (newText:string) {
-
-        this._state.dialogsPage.newMessageText = newText;
-        this._rerenderEntireTree(this._state);
-    },
+    // addPost(postMessage:string){
+    //
+    //     let newPost:PostType = {
+    //         id:5,
+    //         message:this._state.profilePage.postMessage,
+    //         countLike:5
+    //     }
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.postMessage='';
+    //     this._rerenderEntireTree(this._state);
+    //
+    // },
+    // updateNewPostText (newText:string){
+    //     this._state.profilePage.postMessage = newText;
+    //     this._rerenderEntireTree(this._state);
+    // },
+    // addMessage () {
+    //
+    //     let newMessage:MessageType = {
+    //         id:5,
+    //         name:this._state.dialogsPage.newMessageText,
+    //     }
+    //     this._state.dialogsPage.messages.push(newMessage)
+    // },
+    // updateNewMessageText (newText:string) {
+    //
+    //     this._state.dialogsPage.newMessageText = newText;
+    //     this._rerenderEntireTree(this._state);
+    // },
     subscribe(observe){
-        debugger
         this._rerenderEntireTree=observe
     },
     dispatch(action){

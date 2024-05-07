@@ -47,11 +47,8 @@ function App(props:IndexType ) {
                     />
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
-                                                                newMessageText={state.dialogsPage.newMessageText}
                                                                 dispatch={props.store.dispatch.bind(store)}
 
-                                                                // addMessage={props.store.addMessage.bind(store)}
-                                                                // updateNewMessageText={props.store.updateNewMessageText.bind(store)}
                         />}
                     />
 
