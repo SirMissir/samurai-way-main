@@ -30,15 +30,7 @@ export type RootStateType={
 export type StoreStateType={
     _state:RootStateType
     _rerenderEntireTree: (state:RootStateType)=>void;
-
     getState:()=>RootStateType;
-
-    updateNewPostText: (newText: string) => void;
-    updateNewMessageText: (newText: string) => void;
-
-    addPost: (postMessage: string) => void;
-    addMessage: (postMessage: string) => void;
-
     subscribe:(observe:(state:RootStateType)=>void)=>void
     dispatch:(action:ActionsTypes) => void
 }
@@ -97,35 +89,7 @@ let store:StoreStateType = {
     },
     getState(){
         return this._state},
-    // addPost(postMessage:string){
-    //
-    //     let newPost:PostType = {
-    //         id:5,
-    //         message:this._state.profilePage.postMessage,
-    //         countLike:5
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.postMessage='';
-    //     this._rerenderEntireTree(this._state);
-    //
-    // },
-    // updateNewPostText (newText:string){
-    //     this._state.profilePage.postMessage = newText;
-    //     this._rerenderEntireTree(this._state);
-    // },
-    // addMessage () {
-    //
-    //     let newMessage:MessageType = {
-    //         id:5,
-    //         name:this._state.dialogsPage.newMessageText,
-    //     }
-    //     this._state.dialogsPage.messages.push(newMessage)
-    // },
-    // updateNewMessageText (newText:string) {
-    //
-    //     this._state.dialogsPage.newMessageText = newText;
-    //     this._rerenderEntireTree(this._state);
-    // },
+
     subscribe(observe){
         this._rerenderEntireTree=observe
     },
@@ -141,6 +105,7 @@ let store:StoreStateType = {
            this._rerenderEntireTree(this._state);
 
        }else if (action.type === 'ADD-MESSAGE'){
+           debugger
             let newMessage:MessageType = {
                 id:5,
                 name:this._state.dialogsPage.newMessageText,
@@ -156,7 +121,8 @@ let store:StoreStateType = {
            this._rerenderEntireTree(this._state);
 
        }else  if (action.type === 'UPDATE-NEW-MESSAGE-TEXT'){
-           this._state.profilePage.postMessage = action.newText;
+             debugger
+           this._state.dialogsPage.newMessageText = action.newText;
            this._rerenderEntireTree(this._state);
        }
     }
