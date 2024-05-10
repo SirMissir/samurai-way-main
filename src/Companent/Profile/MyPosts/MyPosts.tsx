@@ -13,6 +13,12 @@ type ProfileType = {
 
 function MyPosts(props:ProfileType ) {
 
+    let addPostActionCreator =()=>{
+        return {
+            type: 'ADD-POST'
+        }
+    }
+
     let postsElement = props.posts.map(posts => <Post
         message={posts.message}
         countLike={posts.countLike}
@@ -22,7 +28,7 @@ function MyPosts(props:ProfileType ) {
 
     let addPost = () => {
         if(newPostElement.current){
-            props.dispatch({type:'ADD-POST',postMessage:newPostElement.current?.value})
+            props.dispatch(addPostActionCreator())
         }
     }
 
