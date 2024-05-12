@@ -1,8 +1,8 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import state, {ActionsTypes, PostType} from "../../../redux/state";
-import store from "../../../redux/state";
+import {ActionsTypes, addPostAC, newPostTextAC, PostType} from "../../../redux/state";
+
 
 
 type ProfileType = {
@@ -21,19 +21,15 @@ function MyPosts(props:ProfileType ) {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
-        if(newPostElement.current){
-            props.dispatch({type:'ADD-POST',postMessage:newPostElement.current?.value})
-        }
+        let text = newPostElement.current?.value ?? ''; // Устанавливаем значение по умолчанию, если postMessage равен undefined
+        let action = addPostAC(text)
+            props.dispatch(action);
     }
-
-
-    let onPostChange = ()=>{
-        if(newPostElement.current){
-            props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:newPostElement.current?.value})
-
-        }
+    let onPostChange = () => {
+        let text = newPostElement.current?.value ?? ''; // Устанавливаем значение по умолчанию, если text равен undefined
+        let action = newPostTextAC(text)
+            props.dispatch(action);
     }
-
 
     return (
         <div className={s.myPosts}>

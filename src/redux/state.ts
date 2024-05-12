@@ -44,7 +44,7 @@ type ChangeNewTextActionType={
 }
 type AddMessageActionType={
     type:'ADD-MESSAGE',
-    postMessage:string
+    newMessageText:string
 }
 type ChangeNewMessageActionType={
     type:'UPDATE-NEW-MESSAGE-TEXT',
@@ -52,6 +52,23 @@ type ChangeNewMessageActionType={
 }
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
+
+type AddPostTextActionType = {
+    type: 'ADD-POST'
+    postMessage: string
+}
+type NewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+type AddMessageTextActionType = {
+    type: 'ADD-MESSAGE'
+    newMessageText: string
+}
+type NewMessageTextActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
 
 let store:StoreStateType = {
     _state: {
@@ -125,7 +142,33 @@ let store:StoreStateType = {
            this._state.dialogsPage.newMessageText = action.newText;
            this._rerenderEntireTree(this._state);
        }
+    },
+}
+
+export const addPostAC=(text:string):AddPostTextActionType=>{
+    return{
+        type: 'ADD-POST',
+        postMessage:text
     }
 }
+export const newPostTextAC=(text:string):NewPostTextActionType=>{
+    return{
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    }
+}
+export const addMessageAC=(text:string):AddMessageTextActionType=>{
+    return{
+        type: 'ADD-MESSAGE',
+        newMessageText:text
+    }
+}
+export const newMessageTextAC=(text:string):NewMessageTextActionType=>{
+    return{
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newText: text
+    }
+}
+
 
 export default store;

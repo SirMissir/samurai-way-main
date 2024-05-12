@@ -18,8 +18,6 @@ function Profile(props:AppType) {
                 <MyPosts dispatch={props.dispatch}
                          posts={props.profilePage.posts}
                          newPostText={props.profilePage.postMessage}
-                         // addPost={props.addPost}
-                         // updateNewPostText={props.updateNewPostText}
                 />
             </div>
 
