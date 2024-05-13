@@ -2,7 +2,7 @@ import React, {RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import state, {ActionsTypes, addMessageAC, DialogsPageType, newMessageTextAC} from "../../redux/state";
+import  {ActionsTypes, addMessageAC, DialogsPageType, newMessageTextAC} from "../../redux/state";
 
 
 
