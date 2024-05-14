@@ -29,7 +29,7 @@ export type RootStateType={
 
 export type StoreStateType={
     _state:RootStateType
-    _rerenderEntireTree: (state:RootStateType)=>void;
+    _callSubscriber: (state:RootStateType)=>void;
     getState:()=>RootStateType;
     subscribe:(observe:(state:RootStateType)=>void)=>void
     dispatch:(action:ActionsTypes) => void
@@ -100,15 +100,15 @@ let store:StoreStateType = {
     sidebar:{}
 
 },
-    _rerenderEntireTree(){
-        debugger
-        console.log('Hello')
+    _callSubscriber() {
+        console.log('State changed')
     },
     getState(){
-        return this._state},
+        return this._state
+    },
 
     subscribe(observe){
-        this._rerenderEntireTree=observe
+        this._callSubscriber=observe
     },
     dispatch(action){
        if (action.type === 'ADD-POST'){
@@ -119,8 +119,7 @@ let store:StoreStateType = {
            }
            this._state.profilePage.posts.push(newPost);
            this._state.profilePage.postMessage='';
-           this._rerenderEntireTree(this._state);
-
+           this._callSubscriber(this._state);
        }else if (action.type === 'ADD-MESSAGE'){
            debugger
             let newMessage:MessageType = {
@@ -129,18 +128,17 @@ let store:StoreStateType = {
             }
             this._state.dialogsPage.messages.push(newMessage)
             this._state.dialogsPage.newMessageText='';
-            this._rerenderEntireTree(this._state);
-
+            this._callSubscriber(this._state);
         }
          else if (action.type === 'UPDATE-NEW-POST-TEXT'){
            debugger
            this._state.profilePage.postMessage = action.newText;
-           this._rerenderEntireTree(this._state);
+           this._callSubscriber(this._state);
 
        }else  if (action.type === 'UPDATE-NEW-MESSAGE-TEXT'){
              debugger
            this._state.dialogsPage.newMessageText = action.newText;
-           this._rerenderEntireTree(this._state);
+           this._callSubscriber(this._state);
        }
     },
 }
