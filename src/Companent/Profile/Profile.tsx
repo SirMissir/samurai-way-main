@@ -4,13 +4,13 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes, ProfilePageType} from "../../redux/state";
 
-type AppType={
-    dispatch:(action:ActionsTypes)=>void
-    profilePage:ProfilePageType
+type AppType = {
+    dispatch: (action: ActionsTypes) => void
+    profilePage: ProfilePageType
 }
 
 
-function Profile(props:AppType) {
+function Profile(props: AppType) {
     return (
         <div className={s.content}>
             <div>

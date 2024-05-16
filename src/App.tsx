@@ -26,11 +26,11 @@ const PATH = {
 } as const
 
 type IndexType = {
-    store:StoreStateType
+    store: StoreStateType
 };
 
 
-function App(props:IndexType ) {
+function App(props: IndexType) {
     const state = props.store.getState();
     return (
         <div className='app-wrapper'>
@@ -43,13 +43,13 @@ function App(props:IndexType ) {
                     < Route path={PATH.PAGE1} element={<Profile dispatch={props.store.dispatch.bind(store)}
                                                                 profilePage={state.profilePage}
 
-                        />}
+                    />}
                     />
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
                                                                 dispatch={props.store.dispatch.bind(store)}
 
-                        />}
+                    />}
                     />
 
                     < Route path={PATH.PAGE3} element={<News/>}/>

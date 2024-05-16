@@ -2,22 +2,21 @@ import React, {RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import  {ActionsTypes, addMessageAC, DialogsPageType, newMessageTextAC} from "../../redux/state";
+import {ActionsTypes, addMessageAC, DialogsPageType, newMessageTextAC} from "../../redux/state";
 
 
-
-type PropsType={
-    state:DialogsPageType
-    dispatch:(action:ActionsTypes)=>void
+type PropsType = {
+    state: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
 }
 
 
-const Dialogs = (props:PropsType) => {
+const Dialogs = (props: PropsType) => {
 
-    let dialogsElements = props.state.dialogs.map( dialogs=> <DialogItem name={dialogs.name} id={dialogs.id}/>)
-    let messagesElements = props.state.messages.map(messages => <Message message = {messages.name} id={messages.id}/>)
+    let dialogsElements = props.state.dialogs.map(dialogs => <DialogItem name={dialogs.name} id={dialogs.id}/>)
+    let messagesElements = props.state.messages.map(messages => <Message message={messages.name} id={messages.id}/>)
 
-    let newPostElement: RefObject<HTMLTextAreaElement>=React.createRef();
+    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
 
     let addMessage = () => {
@@ -28,7 +27,7 @@ const Dialogs = (props:PropsType) => {
 
     }
 
-    let onPostChange = ()=>{
+    let onPostChange = () => {
         debugger
         let text = newPostElement.current?.value ?? '';
         let action = newMessageTextAC(text)
@@ -36,25 +35,25 @@ const Dialogs = (props:PropsType) => {
 
     }
 
-  return(
-      <div className={s.dialogs}>
-          <div className={s.dialogs_members}>
-              {dialogsElements}
-          </div>
-          <div className={s.messages}>
-              {messagesElements}
-              <div className={s.item}>
+    return (
+        <div className={s.dialogs}>
+            <div className={s.dialogs_members}>
+                {dialogsElements}
+            </div>
+            <div className={s.messages}>
+                {messagesElements}
+                <div className={s.item}>
                   <textarea
                       placeholder='Enter your message'
                       ref={newPostElement}
                       value={props.state.newMessageText}
                       onChange={onPostChange}
                   />
-                  <button onClick={addMessage}>Send</button>
-              </div>
-          </div>
-      </div>
-  )
+                    <button onClick={addMessage}>Send</button>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Dialogs
