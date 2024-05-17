@@ -58,23 +58,6 @@ type ChangeNewMessageActionType={
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
 
-type AddPostTextACType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
-type NewPostTextACType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type AddMessageTextACType = {
-    type: 'ADD-MESSAGE'
-    newMessageText: string
-}
-type NewMessageTextACType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-
 let store:StoreStateType = {
     _state: {
     profilePage:{
@@ -123,45 +106,5 @@ let store:StoreStateType = {
 
     },
 }
-
-export type ReducerType= addPostACType|
-
-export type removeTodoListACType=ReturnType<typeof removeTodolistAC>
-
-export const removeTodolistAC =(id:string)=>{
-    return{
-        type: 'REMOVE-TODOLIST',
-        payload:{id}
-    }as const
-}
-
-
-export type addPostACType=ReturnType<typeof addPostAC>
-export const addPostAC=(text:string):AddPostTextACType=>{
-    return{
-        type: 'ADD-POST',
-        postMessage:text
-    }as const
-}
-
-export const newPostTextAC=(text:string):NewPostTextACType=>{
-    return{
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    }
-}
-export const addMessageAC=(text:string):AddMessageTextACType=>{
-    return{
-        type: 'ADD-MESSAGE',
-        newMessageText:text
-    }
-}
-export const newMessageTextAC=(text:string):NewMessageTextACType=>{
-    return{
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText: text
-    }
-}
-
 
 export default store;
