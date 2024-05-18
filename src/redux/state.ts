@@ -1,6 +1,5 @@
-import {reducer} from "redux-form";
-import dialogsReducer from "./dialogs-reducer";
-import profileReducer from "./profile-reducer";
+import dialogsReducer, {dialogsReducerType} from "./dialogs-reducer";
+import profileReducer, {profileReducerType} from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
 export type MessageType={
@@ -31,32 +30,15 @@ export type RootStateType={
     dialogsPage:DialogsPageType
     sidebar:SidebarType
 }
+export type ActionType = profileReducerType|dialogsReducerType
 
 export type StoreStateType={
     _state:RootStateType
     _callSubscriber: (state:RootStateType)=>void;
     getState:()=>RootStateType;
     subscribe:(observe:(state:RootStateType)=>void)=>void
-    dispatch:(action:ActionsTypes) => void
+    dispatch:(action:ActionType) => void
 }
-type AddPostActionType={
-    type:'ADD-POST',
-    postMessage:string
-}
-type ChangeNewTextActionType={
-    type:'UPDATE-NEW-POST-TEXT',
-    newText:string
-}
-type AddMessageActionType={
-    type:'ADD-MESSAGE',
-    newMessageText:string
-}
-type ChangeNewMessageActionType={
-    type:'UPDATE-NEW-MESSAGE-TEXT',
-    newText:string
-}
-
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
 
 let store:StoreStateType = {
     _state: {

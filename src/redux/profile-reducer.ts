@@ -1,15 +1,6 @@
-import {PostType} from "./state";
+import {PostType, ProfilePageType} from "./state";
 
-type AddPostTextACType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
-type NewPostTextACType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-const profileReducer = (state, action) => {
+const profileReducer = (state:ProfilePageType, action:profileReducerType) => {
     switch (action.type) {
         case 'ADD-POST' :
             let newPost: PostType = {
@@ -27,17 +18,23 @@ const profileReducer = (state, action) => {
             return state;
     }
 }
-export const addPostAC=(text:string):AddPostTextACType=>{
+
+export type profileReducerType = addPostACType | newPostTextACType
+
+export type addPostACType = ReturnType<typeof addPostAC>
+export const addPostAC=(text:string)=>{
     return{
         type: 'ADD-POST',
         postMessage:text
     }as const
 }
 
-export const newPostTextAC=(text:string):NewPostTextACType=>{
+export type newPostTextACType = ReturnType<typeof newPostTextAC>
+export const newPostTextAC=(text:string)=>{
     return{
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text
-    }
+    } as const
 }
+
 export default profileReducer;

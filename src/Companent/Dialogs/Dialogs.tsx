@@ -2,12 +2,14 @@ import React, {RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {ActionsTypes, addMessageAC, DialogsPageType, newMessageTextAC} from "../../redux/state";
+import {addMessageAC, newMessageTextAC} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../redux/state";
+
 
 
 type PropsType = {
     state: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action) => void
 }
 
 
