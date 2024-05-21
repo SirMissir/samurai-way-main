@@ -7,9 +7,10 @@ import Dialogs from "./Companent/Dialogs/Dialogs";
 import Music from "./Companent/Music/Music";
 import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
-// import Error404 from "./Companent/Error/Error";
+import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import store, {ActionsTypes, RootStateType, StoreStateType} from "./redux/state";
+import store, {RootStateType, StoreStateType} from "./redux/store";
+
 
 export type PathsType = {
     paths: {
@@ -26,11 +27,14 @@ const PATH = {
 } as const
 
 type IndexType = {
-    store: StoreStateType
+    state:RootStateType,
+    dispatch:(action:any)=>void,
+    store:StoreStateType
 };
 
 
 function App(props: IndexType) {
+    debugger
     const state = props.store.getState();
     return (
         <div className='app-wrapper'>
@@ -40,14 +44,14 @@ function App(props: IndexType) {
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
 
-                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.store.dispatch.bind(store)}
+                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.dispatch}
                                                                 profilePage={state.profilePage}
 
                     />}
                     />
 
                     < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
-                                                                dispatch={props.store.dispatch.bind(store)}
+                                                                dispatch={props.dispatch}
 
                     />}
                     />
@@ -56,8 +60,8 @@ function App(props: IndexType) {
                     < Route path={PATH.PAGE4} element={<Music/>}/>
                     < Route path={PATH.PAGE5} element={<Setting/>}/>
 
-                    {/*< Route path={'/*'} element={<Error404/>} />*/}
-                    {/*< Route path={'/Profile/*'} element={<Error404/>} />*/}
+                    < Route path={'/*'} element={<Error404/>} />
+                    < Route path={'/Profile/*'} element={<Error404/>} />
                 </Routes>
             </div>
 

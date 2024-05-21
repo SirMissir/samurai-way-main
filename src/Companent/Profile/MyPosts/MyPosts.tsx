@@ -1,14 +1,14 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import { PostType} from "../../../redux/state";
-import {ActionsTypes, addPostAC, newPostTextAC} from "../../../redux/profile-reducer";
+import { PostType} from "../../../redux/store";
+import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profile-reducer";
 
 
 type ProfileType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: profileReducerType) => void
 }
 
 function MyPosts(props: ProfileType) {

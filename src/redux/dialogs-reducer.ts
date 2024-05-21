@@ -1,6 +1,24 @@
 import {DialogsPageType, MessageType} from "./state";
 
-const dialogsReducer = (state:DialogsPageType, action:dialogsReducerType) => {
+let initialState = {
+    dialogs:[
+        {id:1, name:"Dimych"},
+        {id:2, name:"Andrey"},
+        {id:3, name:"Sveta"},
+        {id:4, name:"Lera"},
+        {id:5, name:"Victor"}
+    ],
+    messages:[
+        {id:1, name:"Hi"},
+        {id:2, name:"How is your it-kamasutra"},
+        {id:3, name:"OK"},
+        {id:4, name:"How much your learning"},
+        {id:5, name:"Victor"}
+    ],
+    newMessageText: ''
+}
+
+const dialogsReducer = (state:DialogsPageType=initialState, action:dialogsReducerType) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
             let newMessage: MessageType = {
