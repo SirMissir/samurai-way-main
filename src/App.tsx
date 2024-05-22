@@ -9,7 +9,8 @@ import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import store, {RootStateType, StoreStateType} from "./redux/store";
+import  {RootStateType} from "./redux/store";
+import {AppRootStoreType} from "./redux/redux-store";
 
 
 export type PathsType = {
@@ -29,7 +30,11 @@ const PATH = {
 type IndexType = {
     state:RootStateType,
     dispatch:(action:any)=>void,
-    store:StoreStateType
+    store: {
+        getState: () => AppRootStoreType;
+        dispatch: (action: any) => void;
+        subscribe: (listener: () => void) => () => void;
+    };
 };
 
 

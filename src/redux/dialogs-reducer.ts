@@ -1,4 +1,4 @@
-import {DialogsPageType, MessageType} from "./state";
+import {DialogsPageType, MessageType} from "./store";
 
 let initialState = {
     dialogs:[

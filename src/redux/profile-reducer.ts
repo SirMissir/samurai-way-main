@@ -29,22 +29,22 @@ const profileReducer = (state:ProfilePageType = initialState, action:profileRedu
     }
 }
 
-export type profileReducerType = addPostACType | newPostTextACType
-
-export type addPostACType = ReturnType<typeof addPostAC>
-export const addPostAC=(text:string)=>{
-    return{
+export type addPostACType = ReturnType<typeof addPostAC>;
+export const addPostAC = (text: string) => {
+    return {
         type: 'ADD-POST',
-        postMessage:text
-    }as const
-}
+        postMessage: text,
+    } as const;
+};
 
-export type newPostTextACType = ReturnType<typeof newPostTextAC>
-export const newPostTextAC=(text:string)=>{
-    return{
+export type newPostTextACType = ReturnType<typeof newPostTextAC>;
+export const newPostTextAC = (text: string) => {
+    return {
         type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    } as const
-}
+        newText: text,
+    } as const;
+};
+
+export type profileReducerType = addPostACType | newPostTextACType;
 
 export default profileReducer;
