@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfilePageType} from "../../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type AppType = {
     dispatch: (action:any) => void
@@ -15,9 +15,10 @@ function Profile(props: AppType) {
         <div className={s.content}>
             <div>
                 <ProfileInfo/>
-                <MyPosts dispatch={props.dispatch}
-                         posts={props.profilePage.posts}
+                <MyPostsContainer posts={props.profilePage.posts}
                          newPostText={props.profilePage.postMessage}
+                         dispatch={props.dispatch}
+
                 />
             </div>
 

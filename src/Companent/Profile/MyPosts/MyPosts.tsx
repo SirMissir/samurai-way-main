@@ -2,13 +2,14 @@ import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import { PostType} from "../../../redux/store";
-import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profile-reducer";
+import { profileReducerType} from "../../../redux/profile-reducer";
 
 
 type ProfileType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: profileReducerType) => void
+    updateNewPostText:(text:string) => void
+    addPost:(text:string) => void
 }
 
 function MyPosts(props: ProfileType) {
@@ -20,15 +21,13 @@ function MyPosts(props: ProfileType) {
 
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
-    let addPost = () => {
-        let text = newPostElement.current?.value ?? ''; // Устанавливаем значение по умолчанию, если postMessage равен undefined
-        let action = addPostAC(text)
-        props.dispatch(action);
+    let onAddPost = () => {
+        let text = newPostElement.current?.value ?? '';// Устанавливаем значение по умолчанию, если postMessage равен undefined
+        props.addPost(text)
     }
     let onPostChange = () => {
         let text = newPostElement.current?.value ?? ''; // Устанавливаем значение по умолчанию, если text равен undefined
-        let action = newPostTextAC(text)
-        props.dispatch(action);
+        props.updateNewPostText(text)
     }
 
     return (
@@ -40,7 +39,7 @@ function MyPosts(props: ProfileType) {
                     value={props.newPostText}
                     onChange={onPostChange}
                 />
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsElement}
