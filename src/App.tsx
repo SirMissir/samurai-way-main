@@ -11,6 +11,7 @@ import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
 import  {RootStateType} from "./redux/store";
 import {AppRootStoreType} from "./redux/redux-store";
+import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
 
 
 export type PathsType = {
@@ -55,7 +56,7 @@ function App(props: IndexType) {
                     />}
                     />
 
-                    < Route path={PATH.PAGE2} element={<Dialogs state={state.dialogsPage}
+                    < Route path={PATH.PAGE2} element={<DialogsContainer state={state.dialogsPage}
                                                                 dispatch={props.dispatch}
 
                     />}

@@ -10,6 +10,8 @@ import {DialogsPageType} from "../../redux/store";
 type PropsType = {
     state: DialogsPageType
     dispatch: (action:any) => void
+    updateNewDialogText:(text:string) => void
+    onAddMessage:(text:string) => void
 }
 
 
@@ -22,18 +24,14 @@ const Dialogs = (props: PropsType) => {
 
 
     let addMessage = () => {
-        debugger
         let text = newPostElement.current?.value ?? '';
-        let action = addMessageAC(text)
-        props.dispatch(action)
+        props.onAddMessage(text)
 
     }
 
     let onPostChange = () => {
-        debugger
         let text = newPostElement.current?.value ?? '';
-        let action = newMessageTextAC(text)
-        props.dispatch(action)
+       props.updateNewDialogText(text)
 
     }
 
