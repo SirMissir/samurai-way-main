@@ -1,13 +1,12 @@
 import React from "react";
+import News from "./News";
 
-const News = () => {
+const NewsContainer = () => {
 
     return(
-        <div>
-            News
-        </div>
+        <News/>
     )
 }
 
-export default News
+export default NewsContainer
 

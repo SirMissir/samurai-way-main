@@ -12,6 +12,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import  {RootStateType} from "./redux/store";
 import {AppRootStoreType} from "./redux/redux-store";
 import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
+import NewsContainer from "./Companent/News/NewsContainer";
 
 
 export type PathsType = {
@@ -62,7 +63,7 @@ function App(props: IndexType) {
                     />}
                     />
 
-                    < Route path={PATH.PAGE3} element={<News/>}/>
+                    < Route path={PATH.PAGE3} element={<NewsContainer/>}/>
                     < Route path={PATH.PAGE4} element={<Music/>}/>
                     < Route path={PATH.PAGE5} element={<Setting/>}/>
 
