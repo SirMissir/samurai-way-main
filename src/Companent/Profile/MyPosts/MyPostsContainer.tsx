@@ -2,6 +2,8 @@ import React from 'react';
 import { PostType} from "../../../redux/store";
 import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import {text} from "stream/consumers";
+import {connect} from "react-redux";
 
 
 type ProfileType = {
@@ -30,5 +32,27 @@ function MyPostsContainer(props: ProfileType) {
         addPost={addPost}
     />)
 }
+
+const mapStateToProps = (state)=>{
+    return{
+        updateNewPostText:state.profilePage.posts,
+        addPost:state.profilePage.newPostText
+    }
+}
+const mapDispatchToProps (dispatch)=>{
+    return {
+        updateNewPostText: (text:string) =>{
+            let action = newPostTextAC(text)
+            props.dispatch(action)
+        },
+        addPost:()=>{
+            let action = addPostAC(text)
+            props.dispatch(action);
+        }
+    }
+}
+
+const MyPostsContainer = connect (mapStateToProps,mapDispatchToProps)(MyPosts)
+
 
 export default MyPostsContainer;

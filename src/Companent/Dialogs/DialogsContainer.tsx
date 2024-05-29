@@ -18,10 +18,10 @@ const DialogsContainer = (props: PropsType) => {
         props.dispatch(action)
     }
 
-    let updateNewDialogText = (text: string) => {
-        let action = newMessageTextAC(text)
-        props.dispatch(action)
-    }
+    // let updateNewDialogText = (text: string) => {
+    //     let action = newMessageTextAC(text)
+    //     props.dispatch(action)
+    // }
     return (
         <Dialogs
             state={props.state}
@@ -37,10 +37,13 @@ let mapStateToProps = (state) => {
         dialogsPage: state.dialogsPage
     }
 }
-let mapDispatchToProps = () => {
-    return {
-        updateNewDialogText: ()=>{},
-        onAddMessage: ()=>{}
+let mapDispatchToProps = (dispatch)=>{
+        updateNewDialogText: ()=>{
+            dispatch()
+        },
+        onAddMessage: ()=>{
+            dispatch(addMessageAC())
+        }
     }
 }
 
