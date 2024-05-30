@@ -4,12 +4,20 @@ import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profi
 import MyPosts from "./MyPosts";
 import {text} from "stream/consumers";
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
 
-type ProfileType = {
-    posts: Array<PostType>
-    newPostText: string
-    dispatch: (action: profileReducerType) => void
+// type ProfileType = {
+//     posts: Array<PostType>
+//     newPostText: string
+//     dispatch: (action: profileReducerType) => void
+// }
+export type MyPostsPropsType = InitialProfileStateType & MapDispatchToPropsType
+
+
+type MapDispatchToPropsType = {
+    addPost: (text:string) => void
+    updateNewPostText: (text: string) => void
 }
 
 function MyPostsContainer(props: ProfileType) {
@@ -35,13 +43,13 @@ function MyPostsContainer(props: ProfileType) {
 
 const mapStateToProps = (state)=>{
     return{
-        updateNewPostText:state.profilePage.posts,
-        addPost:state.profilePage.newPostText
+        posts:state.profilePage.posts,
+        newPostText:state.profilePage.newPostText
     }
 }
-const mapDispatchToProps (dispatch)=>{
+const mapDispatchToProps (dispatch:Dispatch):MapDispatchToPropsType=>{
     return {
-        updateNewPostText: (text:string) =>{
+        updateNewPostext: (text:string) =>{
             let action = newPostTextAC(text)
             props.dispatch(action)
         },
