@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {ChangeEvent, RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import { PostType} from "../../../redux/store";
@@ -21,6 +21,11 @@ function MyPosts(props: ProfileType) {
 
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
+    const onChangeInputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value ?? '';
+        props.updateNewPostText(text)
+    }
+
     let onAddPost = () => {
         let text = newPostElement.current?.value ?? '';// Устанавливаем значение по умолчанию, если postMessage равен undefined
         props.addPost(text)
@@ -35,9 +40,9 @@ function MyPosts(props: ProfileType) {
             My Posts
             <div className={s.item}>
                 <textarea
-                    ref={newPostElement}
+                    // ref={newPostElement}
                     value={props.newPostText}
-                    onChange={onPostChange}
+                    onChange={onChangeInputHandler }
                 />
                 <button onClick={onAddPost}>Add post</button>
             </div>
