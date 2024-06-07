@@ -11,7 +11,7 @@ import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
 import  {RootStateType} from "./redux/store";
 import {AppRootStoreType} from "./redux/redux-store";
-import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
+// import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
 import NewsContainer from "./Companent/News/NewsContainer";
 
 
@@ -57,11 +57,11 @@ function App(props: IndexType) {
                     />}
                     />
 
-                    < Route path={PATH.PAGE2} element={<DialogsContainer state={state.dialogsPage}
-                                                                dispatch={props.dispatch}
+                    {/*< Route path={PATH.PAGE2} element={<DialogsContainer state={state.dialogsPage}*/}
+                    {/*                                            dispatch={props.dispatch}*/}
 
-                    />}
-                    />
+                    {/*/>}*/}
+                    {/*/>*/}
 
                     < Route path={PATH.PAGE3} element={<NewsContainer/>}/>
                     < Route path={PATH.PAGE4} element={<Music/>}/>

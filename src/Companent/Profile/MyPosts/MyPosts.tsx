@@ -19,7 +19,7 @@ function MyPosts(props: ProfileType) {
         countLike={posts.countLike}
     />)
 
-    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+    // let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value ?? '';
