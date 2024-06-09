@@ -6,7 +6,7 @@ let initialState = {
         {id:2, message:"It is my first post", countLike:30},
 
     ],
-    postMessage: ''
+    currentPostText: ''
 }
 
 const profileReducer = (state:ProfilePageType = initialState, action:profileReducerType) => {
@@ -15,14 +15,14 @@ const profileReducer = (state:ProfilePageType = initialState, action:profileRedu
         case 'ADD-POST' :
             let newPost: PostType = {
                 id: 5,
-                message: state.postMessage = action.postMessage,
+                message: state.currentPostText= action.currentPostText,
                 countLike: 5
             }
             state.posts.push(newPost);
-            state.postMessage = '';
+            state.currentPostText = '';
             return state;
         case 'UPDATE-NEW-POST-TEXT':
-            state.postMessage = action.newText;
+            state.currentPostText = action.newText;
             return state;
         default:
             return state;

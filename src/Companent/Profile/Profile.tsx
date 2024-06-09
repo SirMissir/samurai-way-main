@@ -16,7 +16,7 @@ function Profile(props: AppType) {
             <div>
                 <ProfileInfo/>
                 <MyPostsContainer posts={props.profilePage.posts}
-                         newPostText={props.profilePage.postMessage}
+                                  currentPostText={props.profilePage.postMessage}
                          dispatch={props.dispatch}
 
                 />

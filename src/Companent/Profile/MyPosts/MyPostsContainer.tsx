@@ -8,7 +8,7 @@ import {Dispatch} from "redux";
 
 type ProfileType = {
     posts: Array<PostType>
-    newPostText: string
+    currentPostText: string
     dispatch: (action: profileReducerType) => void
 }
 // export type MyPostsPropsType = InitialProfileStateType & MapDispatchToPropsType
@@ -34,8 +34,8 @@ function MyPostsContainer(props: ProfileType) {
 
     return (<MyPosts
         posts={props.posts}
-        newPostText={props.newPostText}
-        updateNewPostText={onPostChange}
+        currentPostText={props.currentPostText}
+        updateCurrentPostText={onPostChange}
         addPost={addPost}
     />)
 }

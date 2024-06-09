@@ -17,7 +17,7 @@ export type PostType={
 }
 export type ProfilePageType={
     posts: Array<PostType>
-    postMessage:string
+    currentPostText:string
 }
 export type DialogsPageType={
     dialogs:Array<DialogType>
@@ -48,7 +48,7 @@ let store:StoreStateType = {
             {id:2, message:"It is my first post", countLike:30},
 
         ],
-        postMessage: ''
+        currentPostText: ''
     },
     dialogsPage:{
         dialogs:[
