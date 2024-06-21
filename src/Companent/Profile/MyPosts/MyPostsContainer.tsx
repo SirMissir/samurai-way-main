@@ -20,11 +20,9 @@ type MapDispatchToPropsType = {
 }
 
 function MyPostsContainer(props: ProfileType) {
-    // let state = props.store.getState() // L42 реализованно на уровне App, нет смысла на столько глубоко прокидывать данные
 
-    let addPost = (text:string) => {
-        let action = addPostAC(text)
-        // props.store.dispatch(action); //L42 можно добавить store для большего функционала( но загрязняет данными)
+    let addPost = () => {
+        let action = addPostAC()
         props.dispatch(action);
     }
     let onPostChange = (text:string) => {

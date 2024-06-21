@@ -15,10 +15,10 @@ const profileReducer = (state:ProfilePageType = initialState, action:profileRedu
         case 'ADD-POST' :
             let newPost: PostType = {
                 id: 5,
-                message: state.currentPostText= action.currentPostText,
+                message: state.currentPostText,
                 countLike: 5
             }
-            state.posts.push(newPost);
+            state.posts.unshift(newPost);
             state.currentPostText = '';
             return state;
         case 'UPDATE-NEW-POST-TEXT':
@@ -30,10 +30,9 @@ const profileReducer = (state:ProfilePageType = initialState, action:profileRedu
 }
 
 export type addPostACType = ReturnType<typeof addPostAC>;
-export const addPostAC = (text: string) => {
+export const addPostAC = () => {
     return {
         type: 'ADD-POST',
-        postMessage: text,
     } as const;
 };
 

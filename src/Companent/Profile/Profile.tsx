@@ -15,10 +15,10 @@ function Profile(props: AppType) {
         <div className={s.content}>
             <div>
                 <ProfileInfo/>
-                <MyPostsContainer posts={props.profilePage.posts}
-                                  currentPostText={props.profilePage.postMessage}
-                         dispatch={props.dispatch}
-
+                <MyPostsContainer
+                    posts={props.profilePage.posts}
+                    currentPostText={props.profilePage.currentPostText}
+                    dispatch={props.dispatch}
                 />
             </div>
 

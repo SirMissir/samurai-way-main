@@ -7,7 +7,7 @@ import {PostType} from "../../../redux/store";
 type ProfileType = {
     posts: Array<PostType>
     currentPostText: string
-    addPost: (text: string) => void
+    addPost: () => void
     updateCurrentPostText: (text: string) => void
 }
 
@@ -30,7 +30,6 @@ function MyPosts(props: ProfileType) {
     }
 
     let addPostHandler = () => addPost();
-    }
 
     return (
         <div className={s.myPosts}>
@@ -48,5 +47,6 @@ function MyPosts(props: ProfileType) {
         </div>
     )
 }
+
 
 export default MyPosts;
