@@ -1,4 +1,3 @@
-// import store from "./redux/store";
 import store from "./redux/redux-store";
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,7 +8,6 @@ import {Provider} from "react-redux";
 
 
 let rerenderEntireTree = (state: any) => {
-    debugger
     ReactDOM.render(
         <HashRouter>
             <Provider store={store}>

@@ -1,8 +1,7 @@
-import React, {RefObject} from "react";
+import React, {ChangeEvent, RefObject} from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {addMessageAC, newMessageTextAC} from "../../redux/dialogs-reducer";
 import {DialogsPageType} from "../../redux/store";
 
 
@@ -20,18 +19,15 @@ const Dialogs = (props: PropsType) => {
     let dialogsElements = props.state.dialogs.map(dialogs => <DialogItem name={dialogs.name} id={dialogs.id}/>)
     let messagesElements = props.state.messages.map(messages => <Message message={messages.name} id={messages.id}/>)
 
-    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+    const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let message = e.currentTarget.value ?? '';
+        props.updateNewDialogText(message);
+    };
 
 
     let addMessage = () => {
         let text = newPostElement.current?.value ?? '';
         props.onAddMessage(text)
-
-    }
-
-    let onPostChange = () => {
-        let text = newPostElement.current?.value ?? '';
-       props.updateNewDialogText(text)
 
     }
 
@@ -45,9 +41,8 @@ const Dialogs = (props: PropsType) => {
                 <div className={s.item}>
                   <textarea
                       placeholder='Enter your message'
-                      ref={newPostElement}
                       value={props.state.newMessageText}
-                      onChange={onPostChange}
+                      onChange={onChangeMessageHandler}
                   />
                     <button onClick={addMessage}>Send</button>
                 </div>

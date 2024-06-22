@@ -1,6 +1,5 @@
-import dialogsReducer, {dialogsReducerType} from "./dialogs-reducer";
-import profileReducer, {profileReducerType} from "./profile-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import  {dialogsReducerType} from "./dialogs-reducer";
+import  {profileReducerType} from "./profile-reducer";
 
 export type MessageType={
     id: number

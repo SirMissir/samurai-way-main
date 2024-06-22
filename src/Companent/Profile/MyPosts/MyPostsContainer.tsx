@@ -2,8 +2,7 @@ import React from 'react';
 import { PostType} from "../../../redux/store";
 import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
+
 
 
 type ProfileType = {
@@ -11,8 +10,6 @@ type ProfileType = {
     currentPostText: string
     dispatch: (action: profileReducerType) => void
 }
-// export type MyPostsPropsType = InitialProfileStateType & MapDispatchToPropsType
-
 
 type MapDispatchToPropsType = {
     addPost: (text:string) => void

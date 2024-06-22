@@ -1,4 +1,4 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../redux/store";
