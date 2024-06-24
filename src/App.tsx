@@ -3,9 +3,7 @@ import './App.css';
 import Header from "./Companent/Header/Header";
 import Navbar from "./Companent/Navbar/Navbar";
 import Profile from "./Companent/Profile/Profile";
-import Dialogs from "./Companent/Dialogs/Dialogs";
 import Music from "./Companent/Music/Music";
-import News from "./Companent/News/News";
 import Setting from "./Companent/Setting/Setting";
 import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
@@ -58,7 +56,7 @@ function App(props: IndexType) {
                     />
 
                     < Route path={PATH.PAGE2} element={<DialogsContainer state={state}
-                                                                dispatch={props.dispatch}
+                                                                // dispatch={props.dispatch}
 
                     />}
                     />

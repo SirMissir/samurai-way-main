@@ -38,10 +38,9 @@ const dialogsReducer = (state:DialogsPageType=initialState, action:dialogsReduce
 export type dialogsReducerType = addMessageACType | newMessageTextACType
 
 export type addMessageACType = ReturnType<typeof addMessageAC>
-export const addMessageAC=(text:string)=>{
+export const addMessageAC=()=>{
     return{
         type: 'ADD-MESSAGE',
-        newMessageText:text
     }as const
 }
 

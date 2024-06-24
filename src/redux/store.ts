@@ -27,7 +27,7 @@ export type SidebarType={}
 export type RootStateType={
     profilePage:ProfilePageType
     dialogsPage:DialogsPageType
-    sidebar:SidebarType
+    sidebar?:SidebarType
 }
 export type ActionType = profileReducerType | dialogsReducerType;
 
@@ -67,7 +67,6 @@ let store:StoreStateType = {
         newMessageText: ''
     },
     sidebar:{}
-
 },
     _callSubscriber() {
         console.log('State changed')
@@ -79,13 +78,6 @@ let store:StoreStateType = {
     subscribe(observe){
         this._callSubscriber=observe
     },
-    // dispatch(action: ActionType){
-    //     this._state.profilePage=profileReducer(this._state.profilePage,action);
-    //     this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action);
-    //     this._state.sidebar=sidebarReducer(this._state.sidebar,action);
-    //     this._callSubscriber(this._state);
-    //
-    // },
 }
 
 export default store;

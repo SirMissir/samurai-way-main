@@ -14,8 +14,8 @@ type PropsType = {
 
 const DialogsContainer = (props: PropsType) => {
 
-    let onAddMessage = (text: string) => {
-        let action = addMessageAC(text)
+    let onAddMessage = () => {
+        let action = addMessageAC()
         props.dispatch(action)
     }
 
@@ -26,7 +26,7 @@ const DialogsContainer = (props: PropsType) => {
     return (
         <Dialogs
             state={props.state.dialogsPage}
-            dispatch={props.dispatch}
+            // dispatch={props.dispatch}
             onAddMessage={onAddMessage}
             updateNewDialogText={updateNewDialogText}
         />
@@ -40,7 +40,8 @@ let mapStateToProps = (state:RootStateType) => {
 }
 let mapDispatchToProps = () => {
     return{
-
+        onAddMessage: ()=>{},
+        updateNewDialogText: ()=>{}
     }
 }
 const SuperDialogsContainer = connect (mapStateToProps,mapDispatchToProps)(Dialogs);

@@ -8,9 +8,9 @@ import {DialogsPageType} from "../../redux/store";
 
 type PropsType = {
     state: DialogsPageType
-    dispatch: (action:any) => void
+    // dispatch: (action:any) => void
     updateNewDialogText:(text:string) => void
-    onAddMessage:(text:string) => void
+    onAddMessage:() => void
 }
 
 
@@ -26,9 +26,7 @@ const Dialogs = (props: PropsType) => {
 
 
     let addMessage = () => {
-        let text = newPostElement.current?.value ?? '';
-        props.onAddMessage(text)
-
+        props.onAddMessage()
     }
 
     return (
