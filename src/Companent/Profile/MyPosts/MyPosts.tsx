@@ -4,14 +4,14 @@ import Post from "./Post/Post";
 import {PostType} from "../../../redux/store";
 
 
-type ProfileType = {
+type ProfileContainerType = {
     posts: Array<PostType>
     currentPostText: string
     addPost: () => void
-    updateCurrentPostText: (text: string) => void
+    updateCurrentPostText: (postText: string) => void
 }
 
-function MyPosts(props: ProfileType) {
+function MyPosts(props: ProfileContainerType) {
     const {
         posts,
         currentPostText,
@@ -19,7 +19,9 @@ function MyPosts(props: ProfileType) {
         updateCurrentPostText
     } = props;
 
-    let postsElement = props.posts.map(posts => <Post
+    let postsElement = posts.map(posts =>
+        <Post
+            key={posts.id}
             message={posts.message}
             countLike={posts.countLike}
         />)
