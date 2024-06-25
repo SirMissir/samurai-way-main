@@ -1,14 +1,13 @@
 import React from 'react';
-import { PostType} from "../../../redux/store";
-import {addPostAC, newPostTextAC, profileReducerType} from "../../../redux/profile-reducer";
+import {addPostAC, newPostTextAC, } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import {ActionsTypes, StoreType} from "../../../redux/redux-store";
+import {Store} from "redux";
 
 
 
 type ProfileType = {
-    posts: Array<PostType>
-    currentPostText: string
-    dispatch: (action: profileReducerType) => void
+    store: Store<StoreType, ActionsTypes>
 }
 
 type MapDispatchToPropsType = {
@@ -16,20 +15,19 @@ type MapDispatchToPropsType = {
     updateNewPostText: (text: string) => void
 }
 
-function MyPostsContainer(props: ProfileType) {
+function MyPostsContainer({store}: ProfileType) {
+    const { posts, currentPostText } = store.getState().profilePage;
+    const { dispatch } = store;
 
-    let addPost = () => {
-        let action = addPostAC()
-        props.dispatch(action);
-    }
-    let onPostChange = (text:string) => {
-        let action = newPostTextAC(text)
-        props.dispatch(action)
-    }
+
+    let addPost = () => dispatch(addPostAC());
+
+    let onPostChange = (text:string) =>dispatch(newPostTextAC(text));
+
 
     return (<MyPosts
-        posts={props.posts}
-        currentPostText={props.currentPostText}
+        posts={posts}
+        currentPostText={currentPostText}
         updateCurrentPostText={onPostChange}
         addPost={addPost}
     />)
