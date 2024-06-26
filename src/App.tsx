@@ -7,10 +7,9 @@ import Music from "./Companent/Music/Music";
 import Setting from "./Companent/Setting/Setting";
 import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
-import  {RootStateType} from "./redux/store";
-import {AppRootStoreType} from "./redux/redux-store";
-import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
 import NewsContainer from "./Companent/News/NewsContainer";
+import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
+
 
 
 export type PathsType = {
@@ -27,20 +26,8 @@ const PATH = {
     ERORR: '/Error404',
 } as const
 
-type IndexType = {
-    state:RootStateType,
-    dispatch:(action:any)=>void,
-    store: {
-        getState: () => AppRootStoreType;
-        dispatch: (action: any) => void;
-        subscribe: (listener: () => void) => () => void;
-    };
-};
-
-
-function App(props: IndexType) {
-    const state = props.store.getState();
-
+// @ts-ignore
+function App() {
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -48,23 +35,11 @@ function App(props: IndexType) {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
-
-                    < Route path={PATH.PAGE1} element={<Profile dispatch={props.dispatch}
-                                                                profilePage={state.profilePage}
-
-                    />}
-                    />
-
-                    < Route path={PATH.PAGE2} element={<DialogsContainer state={state}
-                                                                // dispatch={props.dispatch}
-
-                    />}
-                    />
-
+                    < Route path={PATH.PAGE1} element={<Profile />}/>
+                    < Route path={PATH.PAGE2} element={<DialogsContainer />}/>
                     < Route path={PATH.PAGE3} element={<NewsContainer/>}/>
                     < Route path={PATH.PAGE4} element={<Music/>}/>
                     < Route path={PATH.PAGE5} element={<Setting/>}/>
-
                     < Route path={'/*'} element={<Error404/>} />
                     < Route path={'/Profile/*'} element={<Error404/>} />
                 </Routes>
@@ -73,6 +48,4 @@ function App(props: IndexType) {
         </div>
     );
 }
-
-
 export default App;
