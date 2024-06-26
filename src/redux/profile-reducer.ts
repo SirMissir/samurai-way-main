@@ -1,29 +1,44 @@
-import {PostType, ProfilePageType} from "./store";
 
-let initialState = {
+export type PostType = {
+    id: number
+    message: string
+    countLike: number
+};
+
+export type InitialProfileStateType = {
+    posts: PostType[]
+    newPostText: string
+};
+
+
+let initialState:InitialProfileStateType = {
     posts:[
         {id:1, message:'Hi,how are you',countLike:20},
         {id:2, message:"It is my first post", countLike:30},
 
     ],
-    currentPostText: ''
+    newPostText: ''
 }
 
-const profileReducer = (state:ProfilePageType = initialState, action:profileReducerType) => {
+const profileReducer = (state:InitialProfileStateType = initialState, action:profileReducerType):InitialProfileStateType => {
     debugger
     switch (action.type) {
         case 'ADD-POST' :
             let newPost: PostType = {
                 id: 5,
-                message: state.currentPostText,
+                message: state.newPostText,
                 countLike: 5
-            }
-            state.posts.unshift(newPost);
-            state.currentPostText = '';
-            return state;
+            };
+            return {
+                ...state,
+                posts:[newPost,...state.posts],
+            newPostText: ''
+            };
         case 'UPDATE-NEW-POST-TEXT':
-            state.currentPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         default:
             return state;
     }

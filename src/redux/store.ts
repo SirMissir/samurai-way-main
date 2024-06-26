@@ -1,5 +1,3 @@
-import  {dialogsReducerType} from "./dialogs-reducer";
-import  {profileReducerType} from "./profile-reducer";
 
 export type MessageType={
     id: number
@@ -29,14 +27,12 @@ export type RootStateType={
     dialogsPage:DialogsPageType
     sidebar?:SidebarType
 }
-export type ActionType = profileReducerType | dialogsReducerType;
 
 export type StoreStateType={
     _state:RootStateType
     _callSubscriber: (state:RootStateType)=>void;
     getState:()=>RootStateType;
     subscribe:(observe:(state:RootStateType)=>void)=>void
-    // dispatch:(action:ActionType) => void
 }
 
 let store:StoreStateType = {
@@ -80,4 +76,3 @@ let store:StoreStateType = {
     },
 }
 
-export default store;

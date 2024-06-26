@@ -1,6 +1,19 @@
-import {DialogsPageType, MessageType} from "./store";
+type dialogsType ={
+    id:number,
+    name: string
+}
+type messagesType ={
+    id:number,
+    name: string
+}
 
-let initialState = {
+export type InitialMessagesStateType={
+    dialogs:dialogsType[],
+    messages:messagesType[],
+    newMessageText:string
+}
+
+let initialState:InitialMessagesStateType = {
     dialogs:[
         {id:1, name:"Dimych"},
         {id:2, name:"Andrey"},
@@ -18,19 +31,24 @@ let initialState = {
     newMessageText: ''
 }
 
-const dialogsReducer = (state:DialogsPageType=initialState, action:dialogsReducerType) => {
+const dialogsReducer = (state:InitialMessagesStateType=initialState, action:dialogsReducerType) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
-            let newMessage: MessageType = {
+            let newMessage: messagesType = {
                 id: 5,
                 name: state.newMessageText,
             }
-            state.messages.push(newMessage)
-            state.newMessageText = '';
-            return state;
+            return {
+                ...state,
+                messages: [...state.messages,newMessage],
+                newMessageText: ''
+            }
         case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newText;
-            return state;
+            return {
+                ...state,
+                newMessageText: action.newText
+            }
+
         default:
             return state;
     }
