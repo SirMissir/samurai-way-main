@@ -1,22 +1,16 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/store";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
 
-type ProfileContainerType = {
-    posts: Array<PostType>
-    currentPostText: string
-    addPost: () => void
-    updateCurrentPostText: (postText: string) => void
-}
 
-function MyPosts(props: ProfileContainerType) {
+function MyPosts(props: MyPostsPropsType) {
     const {
         posts,
-        currentPostText,
+        newPostText,
         addPost,
-        updateCurrentPostText
+        updateNewPostText
     } = props;
 
     let postsElement = posts.map(posts =>
@@ -28,20 +22,17 @@ function MyPosts(props: ProfileContainerType) {
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let postText = e.currentTarget.value ?? '';
-        updateCurrentPostText(postText)
+        updateNewPostText(postText)
     }
-
-    let addPostHandler = () => addPost();
-
     return (
         <div className={s.myPosts}>
             My Posts
             <div className={s.item}>
                 <textarea
-                    value={currentPostText}
+                    value={newPostText}
                     onChange={onChangeInputHandler}
                 />
-                <button onClick={addPostHandler}>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsElement}
