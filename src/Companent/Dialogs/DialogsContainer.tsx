@@ -1,50 +1,35 @@
 import React from "react";
-import {addMessageAC, newMessageTextAC} from "../../redux/dialogs-reducer";
-import {DialogsPageType, RootStateType} from "../../redux/store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {addMessageAC, InitialMessagesStateType, newMessageTextAC} from "../../redux/dialogs-reducer";
+import {Dispatch} from "redux";
 
+export type DialogsPropsType = InitialMessagesStateType & MapDispatchToPropsType
 
-
-type PropsType = {
-    state: RootStateType
-    dispatch: (action: any) => void
+type MapDispatchToPropsType = {
+    onAddMessage:()=>void
+    updateNewDialogText: (newText:string)=>void
 }
 
-
-const DialogsContainer = (props: PropsType) => {
-
-    let onAddMessage = () => {
-        let action = addMessageAC()
-        props.dispatch(action)
-    }
-
-    let updateNewDialogText = (text: string) => {
-        let action = newMessageTextAC(text)
-        props.dispatch(action)
-    }
-    return (
-        <Dialogs
-            state={props.state.dialogsPage}
-            // dispatch={props.dispatch}
-            onAddMessage={onAddMessage}
-            updateNewDialogText={updateNewDialogText}
-        />
-    )
-}
-
-let mapStateToProps = (state:RootStateType) => {
+let mapStateToProps = (state:AppStateType):InitialMessagesStateType => {
     return{
-        state: state.dialogsPage
+        dialogs:state.dialogsPage.dialogs,
+        messages:state.dialogsPage.messages,
+        newMessageText:state.dialogsPage.newMessageText
     }
 }
-let mapDispatchToProps = () => {
+let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
     return{
-        onAddMessage: ()=>{},
-        updateNewDialogText: ()=>{}
+        onAddMessage: ()=>{
+            dispatch(addMessageAC())
+        },
+        updateNewDialogText: (newText:string)=>{
+            dispatch(newMessageTextAC(newText))
+        }
     }
 }
 const SuperDialogsContainer = connect (mapStateToProps,mapDispatchToProps)(Dialogs);
 
-export default DialogsContainer
+export default SuperDialogsContainer
 
