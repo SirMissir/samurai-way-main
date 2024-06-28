@@ -9,6 +9,7 @@ import Error404 from "./Companent/Error/Error";
 import {Navigate, Route, Routes} from "react-router-dom";
 import NewsContainer from "./Companent/News/NewsContainer";
 import DialogsContainer from "./Companent/Dialogs/DialogsContainer";
+import Users from "./Companent/Users/Users";
 
 
 
@@ -23,6 +24,7 @@ const PATH = {
     PAGE3: '/News',
     PAGE4: '/Music',
     PAGE5: '/Setting',
+    PAGE6: '/Users',
     ERORR: '/Error404',
 } as const
 
@@ -37,6 +39,7 @@ function App() {
                     < Route path="/" element={<Navigate to={'/Profile'}/>}/>
                     < Route path={PATH.PAGE1} element={<Profile />}/>
                     < Route path={PATH.PAGE2} element={<DialogsContainer />}/>
+                    < Route path={PATH.PAGE6} element={<Users/>}/>
                     < Route path={PATH.PAGE3} element={<NewsContainer/>}/>
                     < Route path={PATH.PAGE4} element={<Music/>}/>
                     < Route path={PATH.PAGE5} element={<Setting/>}/>

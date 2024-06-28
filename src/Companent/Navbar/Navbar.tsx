@@ -21,6 +21,11 @@ function Navbar(props:PathsType) {
                 } >Message</NavLink>
             </div>
             <div className={s.item}>
+                <NavLink to={props.paths.PAGE6} className={({ isActive,  }) =>
+                    isActive ? s.active : ""
+                } >Users</NavLink>
+            </div>
+            <div className={s.item}>
                 <NavLink to={props.paths.PAGE3} className={({ isActive,  }) =>
                     isActive ? s.active : ""
                 } >News</NavLink>
