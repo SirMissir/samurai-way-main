@@ -18,9 +18,9 @@ export type InitialUsersStateType = {
 
 let initialState:InitialUsersStateType = {
     users:[
-        {id:1, fullName:'Dmitry',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-        {id:2, fullName:'Sasha',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-        {id:3, fullName:'Andrey',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+        {id:1, followed: true, fullName:'Dmitry',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+        {id:2, followed: false, fullName:'Sasha',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+        {id:3, followed: false, fullName:'Andrey',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
     ],
 }
 
