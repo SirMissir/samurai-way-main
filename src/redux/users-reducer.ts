@@ -36,17 +36,17 @@ const usersReducer = (state:InitialUsersStateType=initialState, action:###):Init
     }
 }
 
-export type addPostACType = ReturnType<typeof ###>;
-export const ### = () => {
+export type followACType = ReturnType<typeof followAC>;
+export const followAC = () => {
     return {
-
+        type: 'FOLLOW'
     } as const;
 };
 
-export type newPostTextACType = ReturnType<typeof ###>;
-export const ### = () => {
+export type unfollowACACType = ReturnType<typeof unfollowAC>;
+export const unfollowAC = () => {
     return {
-
+        type: 'UNFOLLOW'
     } as const;
 };
 export default usersReducer;
