@@ -27,8 +27,16 @@ let initialState:InitialUsersStateType = {
 const usersReducer = (state:InitialUsersStateType=initialState, action:###):InitialUsersStateType => {
     debugger
     switch (action.type) {
-        case:'###'
-            return {};
+        case:'FOLLOW'
+            return {
+            ...state,
+                users:state.users.map(u => {
+                    if (u.id === action.userID){
+                        return {...u, followed: true}
+                    }
+                    return u ;
+                })
+            };
         case '###':
             return {};
         default:
@@ -40,6 +48,7 @@ export type followACType = ReturnType<typeof followAC>;
 export const followAC = () => {
     return {
         type: 'FOLLOW'
+        userID: string
     } as const;
 };
 
