@@ -3,7 +3,9 @@ export type UsersType = {
     id: number
     fullName: string
     status: string
-    location:LocationType[]
+    followed: boolean
+    location:LocationType
+
 };
 export type LocationType = {
     city:number
@@ -18,44 +20,64 @@ export type InitialUsersStateType = {
 
 let initialState:InitialUsersStateType = {
     users:[
-        {id:1, followed: true, fullName:'Dmitry',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-        {id:2, followed: false, fullName:'Sasha',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-        {id:3, followed: false, fullName:'Andrey',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+    //     {id:1, followed: true, fullName:'Dmitry',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+    //     {id:2, followed: false, fullName:'Sasha',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+    //     {id:3, followed: false, fullName:'Andrey',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
     ],
-}
+};
 
-const usersReducer = (state:InitialUsersStateType=initialState, action:###):InitialUsersStateType => {
-    debugger
+const usersReducer = (state:InitialUsersStateType=initialState, action:userReducerACType):InitialUsersStateType => {
     switch (action.type) {
-        case:'FOLLOW'
+        case'FOLLOW':
             return {
             ...state,
                 users:state.users.map(u => {
-                    if (u.id === action.userID){
+                    if (u.id === action.userId){
                         return {...u, followed: true}
                     }
                     return u ;
                 })
             };
-        case '###':
-            return {};
+        case 'UNFOLLOW':
+            return {
+                ...state,
+                users:state.users.map(u => {
+                    if (u.id === action.userId){
+                        return {...u, followed: false}
+                    }
+                    return u ;
+                })
+            };
+        case 'SET-USERS':
+            return{
+                ...state, users: [...state.users,...action.users]
+            }
         default:
             return state;
     }
 }
-
+export type userReducerACType = followACType|unfollowACType|setUsersACType
 export type followACType = ReturnType<typeof followAC>;
-export const followAC = () => {
+export const followAC = (userId:number) => {
     return {
-        type: 'FOLLOW'
-        userID: string
+        type: 'FOLLOW',
+        userId: userId
     } as const;
 };
 
-export type unfollowACACType = ReturnType<typeof unfollowAC>;
-export const unfollowAC = () => {
+export type unfollowACType = ReturnType<typeof unfollowAC>;
+export const unfollowAC = (userId:number) => {
     return {
-        type: 'UNFOLLOW'
+        type: 'UNFOLLOW',
+        userId: userId
+    } as const;
+};
+
+export type setUsersACType = ReturnType<typeof setUsersAC>;
+export const setUsersAC = (users:UsersType[]) => {
+    return {
+        type: 'SET-USERS',
+        users:users
     } as const;
 };
 export default usersReducer;
