@@ -1,14 +1,15 @@
 
 export type UsersType = {
     id: number
+    photoUrl: string
+    followed: boolean
     fullName: string
     status: string
-    followed: boolean
     location:LocationType
 
 };
 export type LocationType = {
-    city:number
+    city:string
     country:string
 };
 
@@ -20,9 +21,30 @@ export type InitialUsersStateType = {
 
 let initialState:InitialUsersStateType = {
     users:[
-    //     {id:1, followed: true, fullName:'Dmitry',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-    //     {id:2, followed: false, fullName:'Sasha',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
-    //     {id:3, followed: false, fullName:'Andrey',status:'i am student', location: { city: 'Minsk', country: ' Belarus'}},
+        {id:1,
+            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
+            followed: true,
+            fullName:'Dmitry',
+            status:'i am student',
+            location:
+                { city: 'Minsk', country: ' Belarus'}
+        },
+        {id:2,
+            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
+            followed: false,
+            fullName:'Sasha',
+            status:'i am student',
+            location:
+                { city: 'Minsk', country: ' Belarus'}
+        },
+        {id:3,
+            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
+            followed: false,
+            fullName:'Andrey',
+            status:'i am student',
+            location:
+                { city: 'Minsk', country: ' Belarus'}
+        },
     ],
 };
 
@@ -61,7 +83,7 @@ export type followACType = ReturnType<typeof followAC>;
 export const followAC = (userId:number) => {
     return {
         type: 'FOLLOW',
-        userId: userId
+        userId
     } as const;
 };
 
@@ -69,7 +91,7 @@ export type unfollowACType = ReturnType<typeof unfollowAC>;
 export const unfollowAC = (userId:number) => {
     return {
         type: 'UNFOLLOW',
-        userId: userId
+        userId
     } as const;
 };
 
@@ -77,7 +99,7 @@ export type setUsersACType = ReturnType<typeof setUsersAC>;
 export const setUsersAC = (users:UsersType[]) => {
     return {
         type: 'SET-USERS',
-        users:users
+        users
     } as const;
 };
 export default usersReducer;
