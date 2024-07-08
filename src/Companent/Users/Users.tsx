@@ -1,11 +1,17 @@
 import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
+import axios from "axios";
 
 
 
 
 function Users(props:UsersPropsType) {
     const { usersPage, follow, unfollow } = props;
+
+    axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then(response => {
+            props.setUsers()
+        })
 
     const userItems = usersPage.users.map((user) => (
         <div key={user.id}>
