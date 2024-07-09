@@ -1,52 +1,26 @@
 
-export type UsersType = {
+export type UserType = {
     id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
+    name: string
     status: string
-    location:LocationType
-
-};
-export type LocationType = {
-    city:string
-    country:string
-};
+    photos: {
+        large: string
+        small: string
+    }
+    followed: boolean
+}
 
 export type InitialUsersStateType = {
-    users: UsersType[]
+    users: UserType[]
 
 };
 
 
 let initialState:InitialUsersStateType = {
-    users:[
-        {id:1,
-            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
-            followed: true,
-            fullName:'Dmitry',
-            status:'i am student',
-            location:
-                { city: 'Minsk', country: ' Belarus'}
-        },
-        {id:2,
-            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
-            followed: false,
-            fullName:'Sasha',
-            status:'i am student',
-            location:
-                { city: 'Minsk', country: ' Belarus'}
-        },
-        {id:3,
-            photoUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
-            followed: false,
-            fullName:'Andrey',
-            status:'i am student',
-            location:
-                { city: 'Minsk', country: ' Belarus'}
-        },
-    ],
+    users:[]
 };
+
+
 
 const usersReducer = (state:InitialUsersStateType=initialState, action:userReducerACType):InitialUsersStateType => {
     switch (action.type) {
@@ -96,7 +70,7 @@ export const unfollowAC = (userId:number) => {
 };
 
 export type setUsersACType = ReturnType<typeof setUsersAC>;
-export const setUsersAC = (users:UsersType[]) => {
+export const setUsersAC = (users:UserType[]) => {
     return {
         type: 'SET-USERS',
         users

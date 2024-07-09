@@ -1,24 +1,28 @@
 import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
+import userDefault from '../../Assets/Img/user.png'
 
 
 
 
 function Users(props:UsersPropsType) {
-    const { usersPage, follow, unfollow } = props;
+    const { usersPage, follow, unfollow, setUsers } = props;
 
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then(response => {
-            props.setUsers()
-        })
+    if (!usersPage.users.length) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                debugger
+                setUsers(response.data.items)
+            })
+    }
 
     const userItems = usersPage.users.map((user) => (
         <div key={user.id}>
             <div>
                 <img
-                    src={user.photoUrl}
-                    alt={user.fullName}
+                    src={user.photos.large ? user.photos.large : userDefault}
+                    alt={user.name}
                     width={50}
                     height={50}
                 />
@@ -36,11 +40,11 @@ function Users(props:UsersPropsType) {
             </div>
             <div>
                 <div>
-                    <h3>{user.fullName}</h3>
+                    <h3>{user.name}</h3>
                     <p>{user.status}</p>
                 </div>
                 <div>
-                    {`${user.location.city}, ${user.location.country}`}
+                    {/*{`${user.location.city}, ${user.location.country}`}*/}
                 </div>
             </div>
         </div>
