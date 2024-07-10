@@ -1,0 +1,40 @@
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.userItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  background-color: blueviolet;
+}
+.userItem .userSubsBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.userItem .userInfo {
+  flex: 1 1;
+  display: flex;
+  justify-content: space-between;
+}
+.userItem .userInfo .userDetails {
+  display: flex;
+  flex-direction: column;
+}
+.userItem .userInfo .userDetails .username {
+  flex: 1 0;
+  font-size: 1.6rem;
+}
+.userItem .userInfo .userDetails .userStatus {
+  font-size: 1.4rem;
+}
+.userItem .userInfo .userLocation {
+  font-size: 1.5rem;
+  color: brown;
+}
