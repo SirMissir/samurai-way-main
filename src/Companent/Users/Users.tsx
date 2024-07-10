@@ -2,12 +2,11 @@ import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
 import userDefault from '../../Assets/Img/user.png'
+import styles from './User.module.css'
 
 
-
-
-function Users(props:UsersPropsType) {
-    const { usersPage, follow, unfollow, setUsers } = props;
+function Users(props: UsersPropsType) {
+    const {usersPage, follow, unfollow, setUsers} = props;
 
     if (!usersPage.users.length) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
@@ -18,8 +17,8 @@ function Users(props:UsersPropsType) {
     }
 
     const userItems = usersPage.users.map((user) => (
-        <div key={user.id}>
-            <div>
+        <div key={user.id} className={styles.userItem}>
+            <div className={styles.userSubsBlock}>
                 <img
                     src={user.photos.large ? user.photos.large : userDefault}
                     alt={user.name}
@@ -38,12 +37,12 @@ function Users(props:UsersPropsType) {
                     )
                 }
             </div>
-            <div>
-                <div>
-                    <h3>{user.name}</h3>
-                    <p>{user.status}</p>
+            <div className={styles.userInfo}>
+                <div className={styles.userDetails}>
+                    <h3 className={styles.username}>{user.name}</h3>
+                    <p className={styles.userStatus}>{user.status}</p>
                 </div>
-                <div>
+                <div className={styles.userLocation}>
                     {/*{`${user.location.city}, ${user.location.country}`}*/}
                 </div>
             </div>
@@ -51,7 +50,7 @@ function Users(props:UsersPropsType) {
     ));
 
     return (
-        <div>
+        <div className={styles.users}>
             {userItems}
         </div>
     );
