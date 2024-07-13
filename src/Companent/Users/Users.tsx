@@ -4,26 +4,17 @@ import axios from "axios";
 import userDefault from '../../Assets/Img/user.png'
 import styles from './User.module.css'
 
-class Users extends Component<UsersPropsType> {
-    constructor(props: UsersPropsType) {
-        super(props);
 
+function Users(props: UsersPropsType) {
+    const {usersPage, follow, unfollow, setUsers} = props;
+
+    if (!usersPage.users.length) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then((response) => this.props.setUsers(response.data.items));
-    };
-
-    render = () =>
-
-// function Users(props: UsersPropsType) {
-//     const {usersPage, follow, unfollow, setUsers} = props;
-//
-//     if (!usersPage.users.length) {
-//         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-//             .then(response => {
-//                 debugger
-//                 setUsers(response.data.items)
-//             })
-//     }
+            .then(response => {
+                debugger
+                setUsers(response.data.items)
+            })
+    }
 
     const userItems = usersPage.users.map((user) => (
         <div key={user.id} className={styles.userItem}>
